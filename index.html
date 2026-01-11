@@ -306,6 +306,25 @@
             font-family: monospace;
         }
         
+        .pdf-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+        
+        .pdf-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .pdf-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
         .github-link {
             display: flex;
             align-items: center;
@@ -741,7 +760,16 @@
     <button class="nav-btn next" id="nextBtn" onclick="changeSlide(1)">❯</button>
     
     <footer>
-        <div class="page-indicator">Sida <span class="current" id="currentSlide">1</span> (<span id="totalSlides">8</span>)</div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="page-indicator">Sida <span class="current" id="currentSlide">1</span> (<span id="totalSlides">8</span>)</div>
+            <div id="pdfLinks" class="pdf-links" style="display: none;">
+                <a href="CV__Kent_Lundgren_Controller_Kavline_kommun_251124.pdf" target="_blank" title="Ladda ner CV">CV</a>
+                <span style="opacity: 0.5;">|</span>
+                <a href="Kent Lundgren_Controller_KavlingeKommun_251124.pdf" target="_blank" title="Ladda ner ansökan">AN</a>
+                <span style="opacity: 0.5;">|</span>
+                <a href="pm-controller-arbetsliv-och-fritid_202512.pdf" target="_blank" title="Ladda ner presentation av tjänst">Pres</a>
+            </div>
+        </div>
         <div class="keyboard-hints">
             <span><kbd>←</kbd> <kbd>→</kbd> Navigera</span>
             <span><kbd>M</kbd> Växla läge</span>
@@ -793,6 +821,8 @@
             document.getElementById('modeLabel').textContent = isPersonal ? 'Personligt läge' : 'Formellt läge';
             document.getElementById('toggleText').textContent = isPersonal ? 'Formellt' : 'Personligt';
             document.getElementById('toggleIcon').textContent = isPersonal ? '🎩' : '🎭';
+            // Uppdatering 2026-01-11: Visa PDF-länkar bara i personligt läge
+            document.getElementById('pdfLinks').style.display = isPersonal ? 'flex' : 'none';
         }
         
         document.addEventListener('keydown', e => {
