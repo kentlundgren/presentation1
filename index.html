@@ -16,24 +16,24 @@
            ============================================ */
         :root {
             /* Formellt tema - Kävlinge-inspirerade färger */
-            --formal-primary: #1a5a3a;      /* Mörkgrön - Kävlinges gröna profil */
+            --formal-primary: #1a5a3a;
             --formal-secondary: #2d7a52;
-            --formal-accent: #c4a35a;        /* Guld-accent */
+            --formal-accent: #c4a35a;
             --formal-bg: #f8f9fa;
             --formal-text: #1a1a1a;
             --formal-light: #ffffff;
             --formal-gradient: linear-gradient(135deg, #1a5a3a 0%, #2d7a52 50%, #3d8a62 100%);
             
-            /* Personligt tema - Varmare, mer lekfullt */
-            --personal-primary: #2c5282;     /* Djupblå */
+            /* Personligt tema */
+            --personal-primary: #2c5282;
             --personal-secondary: #4299e1;
-            --personal-accent: #ed8936;       /* Varm orange */
-            --personal-bg: #fffaf0;           /* Varm off-white */
+            --personal-accent: #ed8936;
+            --personal-bg: #fffaf0;
             --personal-text: #2d3748;
             --personal-light: #ffffff;
             --personal-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             
-            /* Aktiva färger (ändras via JavaScript) */
+            /* Aktiva färger */
             --primary: var(--formal-primary);
             --secondary: var(--formal-secondary);
             --accent: var(--formal-accent);
@@ -42,14 +42,10 @@
             --light: var(--formal-light);
             --header-gradient: var(--formal-gradient);
             
-            /* Spacing och dimensioner */
-            --slide-max-width: 1000px;
+            --slide-max-width: 900px;
             --transition-speed: 0.4s;
         }
         
-        /* ============================================
-           GRUNDLÄGGANDE STILAR
-           ============================================ */
         * {
             margin: 0;
             padding: 0;
@@ -68,12 +64,12 @@
         }
         
         /* ============================================
-           HEADER
+           HEADER - Kompakt med kort presentation
            ============================================ */
         header {
             background: var(--header-gradient);
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.8rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -81,21 +77,64 @@
             transition: background var(--transition-speed) ease;
         }
         
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
         
-        .presentation-title {
-            font-size: 0.95rem;
-            opacity: 0.9;
+        .header-divider {
+            width: 1px;
+            height: 30px;
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .header-info {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        
+        .header-title {
+            font-weight: 600;
+            opacity: 0.95;
+        }
+        
+        .header-subtitle {
             font-weight: 300;
+            opacity: 0.8;
+            font-size: 0.8rem;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.85rem;
+        }
+        
+        .header-contact {
+            display: flex;
+            gap: 1rem;
+            opacity: 0.9;
+        }
+        
+        .header-contact span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
         
         /* ============================================
-           SLIDES CONTAINER
+           SLIDES CONTAINER - En slide i taget
            ============================================ */
         .slides-container {
             flex: 1;
@@ -114,7 +153,7 @@
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             padding: 3rem;
-            min-height: 500px;
+            min-height: 480px;
             animation: slideIn 0.5s ease;
             transition: all var(--transition-speed) ease;
         }
@@ -180,7 +219,6 @@
             font-size: 1.05rem;
             line-height: 1.7;
             margin-bottom: 0.5rem;
-            position: relative;
         }
         
         .slide li::marker {
@@ -188,7 +226,7 @@
         }
         
         /* ============================================
-           SPECIELLA SLIDE-ELEMENT
+           SPECIELLA ELEMENT
            ============================================ */
         .highlight-box {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
@@ -196,21 +234,19 @@
             padding: 1.5rem 2rem;
             border-radius: 12px;
             margin: 1.5rem 0;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.6;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            transition: all var(--transition-speed) ease;
         }
         
         .quote {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: var(--secondary);
             border-left: 4px solid var(--accent);
             padding-left: 1.5rem;
             margin: 1.5rem 0;
-            transition: all var(--transition-speed) ease;
         }
         
         .two-columns {
@@ -272,7 +308,7 @@
             margin-top: 0.5rem;
         }
         
-        /* Personlig version - handskrift-stil */
+        /* Personlig version stilar */
         .handwritten {
             font-family: 'Caveat', cursive;
             font-size: 1.4rem;
@@ -283,7 +319,7 @@
         }
         
         .emoji-accent {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-right: 0.5rem;
         }
         
@@ -300,7 +336,7 @@
             content: "💡 ";
         }
         
-        /* Intro slide special styling */
+        /* Intro slide */
         .intro-slide {
             text-align: center;
             display: flex;
@@ -321,26 +357,13 @@
         }
         
         .intro-slide .tagline {
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: 1.15rem;
+            max-width: 650px;
             margin: 0 auto;
         }
         
-        .contact-info {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: var(--bg);
-            border-radius: 10px;
-            display: inline-block;
-        }
-        
-        .contact-info p {
-            margin: 0.3rem 0;
-            font-size: 1rem;
-        }
-        
         /* ============================================
-           NAVIGATION BUTTONS
+           NAVIGATION
            ============================================ */
         .nav-btn {
             position: fixed;
@@ -373,13 +396,8 @@
             transform: translateY(-50%);
         }
         
-        .nav-btn.prev {
-            left: 1.5rem;
-        }
-        
-        .nav-btn.next {
-            right: 1.5rem;
-        }
+        .nav-btn.prev { left: 1.5rem; }
+        .nav-btn.next { right: 1.5rem; }
         
         /* ============================================
            FOOTER
@@ -387,7 +405,7 @@
         footer {
             background: var(--primary);
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.8rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -402,6 +420,20 @@
         .page-indicator .current {
             font-weight: 600;
             font-size: 1.2rem;
+        }
+        
+        .keyboard-hints {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .keyboard-hints kbd {
+            background: rgba(255,255,255,0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
         }
         
         .mode-toggle {
@@ -419,9 +451,9 @@
             background: white;
             color: var(--primary);
             border: none;
-            padding: 0.6rem 1.2rem;
+            padding: 0.5rem 1rem;
             border-radius: 25px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -435,29 +467,8 @@
             box-shadow: 0 4px 15px rgba(255,255,255,0.3);
         }
         
-        .toggle-btn .toggle-icon {
-            font-size: 1.1rem;
-        }
-        
         /* ============================================
-           KEYBOARD HINTS
-           ============================================ */
-        .keyboard-hints {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .keyboard-hints kbd {
-            background: rgba(255,255,255,0.2);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-family: monospace;
-        }
-        
-        /* ============================================
-           PERSONAL MODE STYLES
+           PERSONAL MODE
            ============================================ */
         body.personal-mode {
             --primary: var(--personal-primary);
@@ -470,21 +481,43 @@
         }
         
         /* ============================================
-           RESPONSIVE DESIGN
+           RESPONSIVE
            ============================================ */
+        @media (max-width: 900px) {
+            header {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.8rem 1rem;
+            }
+            
+            .header-left {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            
+            .header-divider {
+                display: none;
+            }
+            
+            .header-right {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            
+            .header-contact {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
         @media (max-width: 768px) {
             .slide {
-                padding: 2rem;
+                padding: 1.5rem;
                 min-height: auto;
             }
             
-            .slide h1 {
-                font-size: 1.8rem;
-            }
-            
-            .slide h2 {
-                font-size: 1.4rem;
-            }
+            .slide h1 { font-size: 1.8rem; }
+            .slide h2 { font-size: 1.4rem; }
             
             .two-columns {
                 grid-template-columns: 1fr;
@@ -500,44 +533,24 @@
                 font-size: 1.2rem;
             }
             
-            .nav-btn.prev {
-                left: 0.5rem;
-            }
-            
-            .nav-btn.next {
-                right: 0.5rem;
-            }
+            .nav-btn.prev { left: 0.5rem; }
+            .nav-btn.next { right: 0.5rem; }
             
             footer {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.8rem;
                 text-align: center;
             }
             
-            .keyboard-hints {
-                display: none;
-            }
+            .keyboard-hints { display: none; }
         }
         
-        /* ============================================
-           PRINT STYLES
-           ============================================ */
         @media print {
-            .nav-btn, footer, header {
-                display: none;
-            }
-            
+            .nav-btn, footer { display: none; }
+            header { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
             .slide {
                 page-break-after: always;
                 box-shadow: none;
-                border: 1px solid #ddd;
-            }
-            
-            .slides-container {
-                display: block;
-            }
-            
-            .slide {
                 display: block !important;
             }
         }
@@ -545,11 +558,23 @@
 </head>
 <body>
     <!-- ============================================
-         HEADER
+         HEADER - Kompakt med kort presentation
          ============================================ -->
     <header>
-        <div class="logo">Kent Lundgren</div>
-        <div class="presentation-title" id="headerTitle">Controller – Sektor arbetsliv och fritid</div>
+        <div class="header-left">
+            <div class="logo">Kent Lundgren</div>
+            <div class="header-divider"></div>
+            <div class="header-info">
+                <span class="header-title">Controller till Sektor arbetsliv och fritid</span>
+                <span class="header-subtitle">Civilekonom · Civilingenjör · 20+ års erfarenhet</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="header-contact">
+                <span>📧 lundgren.kent@gmail.com</span>
+                <span>📱 070-606 98 76</span>
+            </div>
+        </div>
     </header>
     
     <!-- ============================================
@@ -559,35 +584,28 @@
         
         <!-- ========== SLIDE 1: INTRO ========== -->
         <div class="slide active intro-slide" data-slide="1">
-            <!-- Formell version -->
             <div class="formal-content">
-                <h1>Kent Lundgren</h1>
-                <div class="subtitle">Controller till Sektor arbetsliv och fritid</div>
-                <p class="tagline">Civilekonom och civilingenjör med över 20 års erfarenhet som controller inom offentlig och privat sektor. Verksamhetsnära ekonomistyrning med fokus på utveckling.</p>
-                <div class="contact-info">
-                    <p>📧 lundgren.kent@gmail.com</p>
-                    <p>📱 070-606 98 76</p>
-                    <p>🌐 www.kentlundgren.se</p>
+                <h1>Välkommen!</h1>
+                <div class="subtitle">Presentation för controllertjänsten i Kävlinge kommun</div>
+                <p class="tagline">I denna presentation berättar jag om min bakgrund, erfarenhet och varför jag söker tjänsten som controller till Sektor arbetsliv och fritid.</p>
+                <div class="highlight-box" style="display: inline-block; margin-top: 2rem;">
+                    Använd piltangenterna ← → för att navigera, eller klicka på pilarna
                 </div>
             </div>
             
-            <!-- Personlig version -->
             <div class="personal-content" style="display: none;">
                 <h1>Hej Kävlinge! 👋</h1>
                 <div class="subtitle">Jag är Kent – och jag vill bli er nya controller!</div>
-                <p class="tagline">Ekonom med ingenjörshjärna, 20+ års erfarenhet, och ett brinnande intresse för att göra ekonomi begripligt och användbart. Plus att jag tycker det är kul med AI! 🤖</p>
-                <p class="handwritten">...och ja, jag vet vad Hypergene är!</p>
-                <div class="contact-info">
-                    <p>📧 lundgren.kent@gmail.com</p>
-                    <p>📱 070-606 98 76</p>
-                    <p>🌐 www.kentlundgren.se</p>
+                <p class="tagline">Häng med på en liten resa genom min bakgrund, mina erfarenheter och varför just den här tjänsten känns rätt!</p>
+                <p class="handwritten" style="margin-top: 1.5rem;">Spoiler: Jag gillar både siffror och människor 🤓</p>
+                <div class="highlight-box" style="display: inline-block; margin-top: 1.5rem;">
+                    Klicka på pilarna eller använd tangentbordet för att bläddra
                 </div>
             </div>
         </div>
         
         <!-- ========== SLIDE 2: SAMMANFATTNING ========== -->
         <div class="slide" data-slide="2">
-            <!-- Formell version -->
             <div class="formal-content">
                 <h2>Profil i korthet</h2>
                 
@@ -619,7 +637,6 @@
                 </ul>
             </div>
             
-            <!-- Personlig version -->
             <div class="personal-content" style="display: none;">
                 <h2>Vem är jag då? 🤔</h2>
                 
@@ -634,70 +651,65 @@
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">∞</div>
-                        <div class="stat-label">koppar kaffe konsumerade</div>
+                        <div class="stat-label">koppar kaffe</div>
                     </div>
                 </div>
                 
                 <div class="highlight-box">
-                    <strong>Just nu:</strong> Controller i Simrishamn där jag jonglerar Kultur & Fritid OCH Socialförvaltningen. Ja, jag vet – jag gillar variation! 🎭
+                    <strong>Just nu:</strong> Controller i Simrishamn där jag jonglerar Kultur & Fritid OCH Socialförvaltningen. Ja, jag gillar variation! 🎭
                 </div>
                 
                 <div class="fun-fact">
                     Visste du att jag räknat ut exakt vad ett bassängläckage kostar? Vatten + värme + kemikalier = en controller som verkligen vill förstå verksamheten!
                 </div>
-                
-                <p class="handwritten">Spoiler: Det var ganska dyrt... 💸</p>
             </div>
         </div>
         
         <!-- ========== SLIDE 3: VARFÖR KÄVLINGE ========== -->
         <div class="slide" data-slide="3">
-            <!-- Formell version -->
             <div class="formal-content">
                 <h2>Varför Kävlinge kommun?</h2>
                 
                 <div class="quote">
-                    "Vi formar framtiden" – En vision som speglar min egen syn på controllerrollen: att vara med och utveckla, inte bara följa upp.
+                    "Vi formar framtiden" – En vision som speglar min syn på controllerrollen: att vara med och utveckla, inte bara följa upp.
                 </div>
                 
-                <h3>Vad som attraherar mig med tjänsten</h3>
+                <h3>Vad som attraherar mig</h3>
                 <ul>
-                    <li><strong>Sektorns bredd:</strong> Gymnasie- och vuxenutbildning, bibliotek, kulturskola, fritidsgårdar, arbetsmarknadsinsatser och IFO – en spännande mix</li>
+                    <li><strong>Sektorns bredd:</strong> Gymnasie- och vuxenutbildning, bibliotek, kulturskola, fritidsgårdar, arbetsmarknadsinsatser och IFO</li>
                     <li><strong>Ledningsgruppsroll:</strong> Erfarenhet av ledningsgruppsarbete från SCA och Statens institutionsstyrelse</li>
                     <li><strong>Hypergene-utveckling:</strong> Daglig användare som vill utveckla systemet vidare</li>
                     <li><strong>Värdeorden:</strong> Öppenhet, engagemang, utveckling – värden jag känner igen mig i</li>
                 </ul>
                 
                 <div class="highlight-box">
-                    Min erfarenhet från Kultur & Fritidsförvaltningen i Simrishamn ger direkt överförbar kunskap om just denna typ av verksamheter.
+                    Min erfarenhet från Kultur & Fritidsförvaltningen i Simrishamn ger direkt överförbar kunskap.
                 </div>
             </div>
             
-            <!-- Personlig version -->
             <div class="personal-content" style="display: none;">
                 <h2>Varför just Kävlinge? 🎯</h2>
                 
                 <div class="quote">
-                    "Vi formar framtiden" – Okej, det där gillar jag! Framåtanda och inte bara "vi administrerar nuet"
+                    "Vi formar framtiden" – Okej, det där gillar jag! Framåtanda istället för "vi administrerar nuet"
                 </div>
                 
                 <h3>Det som fick mig att hoppa till 🦘</h3>
                 <ul>
-                    <li><span class="emoji-accent">🎓</span> Gymnasie- och vuxenutbildning (fick nyss ett barn genom gymnasiet!)</li>
-                    <li><span class="emoji-accent">📚</span> Bibliotek och kulturskola (kultur är underskattat i ekonomiska termer)</li>
+                    <li><span class="emoji-accent">🎓</span> Gymnasie- och vuxenutbildning</li>
+                    <li><span class="emoji-accent">📚</span> Bibliotek och kulturskola</li>
                     <li><span class="emoji-accent">👥</span> Ledningsgrupp – jag trivs i rummet där det händer</li>
-                    <li><span class="emoji-accent">💻</span> Hypergene-utveckling – äntligen någon som vill att controllern faktiskt utvecklar systemet!</li>
+                    <li><span class="emoji-accent">💻</span> Hypergene-utveckling – äntligen någon som vill att controllern utvecklar systemet!</li>
                 </ul>
                 
                 <div class="fun-fact">
-                    Jag jobbar redan med exakt samma typ av verksamheter i Simrishamn. Så ja, jag vet vad en fritidsgård kostar att driva. Och varför kulturskolan alltid behöver nya instrument. 🎸
+                    Jag jobbar redan med exakt samma verksamheter i Simrishamn. Så ja, jag vet vad en fritidsgård kostar. 🎸
                 </div>
             </div>
         </div>
         
         <!-- ========== SLIDE 4: ERFARENHET ========== -->
         <div class="slide" data-slide="4">
-            <!-- Formell version -->
             <div class="formal-content">
                 <h2>Relevant erfarenhet</h2>
                 
@@ -705,21 +717,21 @@
                     <div class="column">
                         <h4><span class="icon">🏛️</span> Offentlig sektor</h4>
                         <ul>
-                            <li><strong>Simrishamns kommun</strong> (2025-) – Controller K&F + Service</li>
-                            <li><strong>Landskrona stad</strong> (2024-25) – Controller Serviceförvaltningen</li>
-                            <li><strong>Lunds universitet</strong> (2018-23) – Ekonom</li>
-                            <li><strong>Trafikverket</strong> (2015-17) – Controller</li>
-                            <li><strong>Statens institutionsstyrelse</strong> (2010-12) – Controller södra regionen</li>
+                            <li><strong>Simrishamns kommun</strong> (2025-)</li>
+                            <li><strong>Landskrona stad</strong> (2024-25)</li>
+                            <li><strong>Lunds universitet</strong> (2018-23)</li>
+                            <li><strong>Trafikverket</strong> (2015-17)</li>
+                            <li><strong>Statens institutionsstyrelse</strong> (2010-12)</li>
                         </ul>
                     </div>
                     <div class="column">
                         <h4><span class="icon">🏢</span> Privat sektor</h4>
                         <ul>
-                            <li><strong>Sodexo/Tetra Pak</strong> (2023-24) – Business Controller</li>
-                            <li><strong>Katrineholm Energi</strong> (2006-10) – Controller</li>
-                            <li><strong>SCA Packaging</strong> (2001-05) – Controller & admin chef</li>
+                            <li><strong>Sodexo/Tetra Pak</strong> (2023-24)</li>
+                            <li><strong>Katrineholm Energi</strong> (2006-10)</li>
+                            <li><strong>SCA Packaging</strong> (2001-05)</li>
                         </ul>
-                        <h4 style="margin-top: 1.5rem;"><span class="icon">🎓</span> Utbildningsbakgrund</h4>
+                        <h4 style="margin-top: 1rem;"><span class="icon">🎓</span> Utbildning</h4>
                         <ul>
                             <li>Civilekonom, Lunds universitet</li>
                             <li>Civilingenjör, LTH</li>
@@ -729,11 +741,8 @@
                 </div>
             </div>
             
-            <!-- Personlig version -->
             <div class="personal-content" style="display: none;">
                 <h2>Min resa hit 🗺️</h2>
-                
-                <p>En controller som har testat lite av varje:</p>
                 
                 <div class="two-columns">
                     <div class="column">
@@ -743,35 +752,34 @@
                     </div>
                     <div class="column">
                         <h4><span class="icon">🏢</span> Näringsliv</h4>
-                        <p>SCA (pappersförpackningar), Sodexo (facility management), Energibolag...</p>
+                        <p>SCA, Sodexo, Energibolag...</p>
                         <p class="handwritten">...och hur privat sektor tänker!</p>
                     </div>
                 </div>
                 
                 <div class="fun-fact">
-                    Rolig kuriosa: Min ekonomkarriär började faktiskt som kassör på Kalmar Nation i Lund. 🍺 Man kan säga att jag har jobbat mig uppåt från studentpuben till ledningsgruppen!
+                    Min ekonomkarriär började som kassör på Kalmar Nation i Lund. 🍺 Från studentpub till ledningsgrupp!
                 </div>
                 
                 <div class="highlight-box">
-                    <strong>Plot twist:</strong> Jag är BÅDE civilekonom OCH civilingenjör. Det betyder att jag förstår tekniken bakom verksamheten – inte bara siffrorna.
+                    <strong>Plot twist:</strong> Jag är BÅDE civilekonom OCH civilingenjör. Det betyder att jag förstår tekniken – inte bara siffrorna.
                 </div>
             </div>
         </div>
         
         <!-- ========== SLIDE 5: SYSTEMKUNSKAP ========== -->
         <div class="slide" data-slide="5">
-            <!-- Formell version -->
             <div class="formal-content">
-                <h2>Systemkunskap och IT-kompetens</h2>
+                <h2>Systemkunskap</h2>
                 
-                <p>I tjänstebeskrivningen framhålls att Hypergene är controllerns främsta stödsystem. Jag har daglig erfarenhet av både Hypergene och flera andra relevanta system.</p>
+                <p>Hypergene är controllerns främsta stödsystem i Kävlinge. Jag har daglig erfarenhet av både Hypergene och flera andra system.</p>
                 
                 <div class="two-columns">
                     <div class="column">
                         <h4><span class="icon">📊</span> BI-system</h4>
                         <ul>
                             <li><strong>Hypergene</strong> – Daglig användning</li>
-                            <li><strong>QlikSense/QlikView</strong> – Implementering och utveckling</li>
+                            <li><strong>QlikSense/QlikView</strong> – Implementering</li>
                             <li><strong>Planacy</strong> – Budget och prognos</li>
                         </ul>
                     </div>
@@ -779,33 +787,32 @@
                         <h4><span class="icon">💰</span> Ekonomisystem</h4>
                         <ul>
                             <li><strong>Raindance</strong> – Daglig användning</li>
-                            <li><strong>Unit4/UBW</strong> – Landskrona, SCA</li>
-                            <li><strong>SAP</strong> – Sodexo</li>
+                            <li><strong>Unit4/UBW</strong></li>
+                            <li><strong>SAP</strong></li>
                         </ul>
                     </div>
                 </div>
                 
                 <h3>Utvecklingserfarenhet</h3>
                 <ul>
-                    <li>Implementerade QlikView inom Statens institutionsstyrelse för förbättrad ekonomisk uppföljning</li>
-                    <li>Utvecklade rapporter och dashboards i Hypergene vid Lunds universitet</li>
-                    <li>Utbildat chefer i systemanvändning för självständig uppföljning</li>
+                    <li>Implementerade QlikView inom Statens institutionsstyrelse</li>
+                    <li>Utvecklade rapporter och dashboards i Hypergene</li>
+                    <li>Utbildat chefer i systemanvändning</li>
                 </ul>
             </div>
             
-            <!-- Personlig version -->
             <div class="personal-content" style="display: none;">
                 <h2>IT-nörd? Ja, lite! 💻</h2>
                 
-                <p>Ni skriver att Hypergene är controllerns främsta stödsystem. <strong>Bingo!</strong> Det är precis vad jag jobbar med varje dag.</p>
+                <p>Ni skriver att Hypergene är controllerns främsta stödsystem. <strong>Bingo!</strong> Det jobbar jag med varje dag.</p>
                 
                 <div class="two-columns">
                     <div class="column">
-                        <h4><span class="icon">📊</span> BI-system jag kan</h4>
+                        <h4><span class="icon">📊</span> BI-system</h4>
                         <ul>
                             <li><strong>Hypergene</strong> ✅ Dagligen!</li>
                             <li><strong>QlikSense</strong> ✅ Har implementerat</li>
-                            <li><strong>Planacy</strong> ✅ Nyss lärt mig</li>
+                            <li><strong>Planacy</strong> ✅</li>
                         </ul>
                     </div>
                     <div class="column">
@@ -819,16 +826,13 @@
                 </div>
                 
                 <div class="fun-fact">
-                    På SiS fick jag folk att sluta med sina Excel-ark och faktiskt använda QlikView. Det tog tre månader och många fikor, men det gick! 🍪
+                    På SiS fick jag folk att sluta med Excel och använda QlikView. Det tog tre månader och många fikor! 🍪
                 </div>
-                
-                <p class="handwritten">Hemligheten? Jag visar alltid hur DERAS jobb blir lättare, inte mitt.</p>
             </div>
         </div>
         
         <!-- ========== SLIDE 6: VERKSAMHETSNÄRA ========== -->
         <div class="slide" data-slide="6">
-            <!-- Formell version -->
             <div class="formal-content">
                 <h2>Verksamhetsnära arbetssätt</h2>
                 
@@ -836,21 +840,20 @@
                     "Bra ekonomistyrning förutsätter förståelse för verksamheten."
                 </div>
                 
-                <p>Jag är övertygad om att en controller skapar mest värde genom att arbeta nära verksamheten, förstå dess vardag och utmaningar.</p>
+                <p>En controller skapar mest värde genom att arbeta nära verksamheten och förstå dess vardag.</p>
                 
-                <h3>Konkreta exempel från nuvarande roll</h3>
+                <h3>Konkreta exempel</h3>
                 <ul>
-                    <li><strong>Bassängläckage-analys:</strong> Beräknade totalkostnaden för ett läckage i inomhusbad – vatten, uppvärmning och kemikalier – för att ge verksamheten ett relevant beslutsunderlag</li>
-                    <li><strong>Nämndpresentationer:</strong> Redovisar månadsbokslut inför presidium och politisk nämnd</li>
-                    <li><strong>Nyckeltalsutveckling:</strong> Arbetar med att koppla ekonomi- och verksamhetsdata för bättre uppföljning</li>
+                    <li><strong>Bassängläckage-analys:</strong> Beräknade totalkostnaden för ett läckage – vatten, uppvärmning och kemikalier – för relevant beslutsunderlag</li>
+                    <li><strong>Nämndpresentationer:</strong> Redovisar månadsbokslut inför presidium och nämnd</li>
+                    <li><strong>Nyckeltalsutveckling:</strong> Kopplar ekonomi- och verksamhetsdata</li>
                 </ul>
                 
                 <div class="highlight-box">
-                    Min bakgrund som lärare och diplomerad coach har gett mig verktyg för att kommunicera ekonomiska sammanhang pedagogiskt för olika målgrupper.
+                    Min bakgrund som lärare och coach har gett mig verktyg för att kommunicera ekonomiska sammanhang pedagogiskt.
                 </div>
             </div>
             
-            <!-- Personlig version -->
             <div class="personal-content" style="display: none;">
                 <h2>Jag gillar att gå ut på golvet! 🚶</h2>
                 
@@ -858,17 +861,13 @@
                     "Excel-ark ljuger inte – men de berättar inte heller hela sanningen."
                 </div>
                 
-                <p>Jag tror att den bästa ekonomistyrningen sker när man faktiskt förstår vad folk gör.</p>
-                
-                <h3>Ett exempel jag är lite stolt över 😊</h3>
-                <p>I Simrishamn hade vi ett inomhusbad med läckage. Istället för att bara säga "fixa det", räknade jag ut EXAKT vad läckaget kostade:</p>
-                
+                <h3>Ett exempel jag är stolt över 😊</h3>
+                <p>I Simrishamn hade vi ett inomhusbad med läckage. Istället för "fixa det" räknade jag ut EXAKT vad det kostade:</p>
                 <ul>
                     <li>💧 Vattenförbrukning</li>
-                    <li>🔥 Uppvärmning av det nya vattnet</li>
+                    <li>🔥 Uppvärmning av vattnet</li>
                     <li>🧪 Kemikalier för att balansera poolen</li>
                 </ul>
-                
                 <p>Plötsligt blev det en helt annan diskussion i ledningsgruppen!</p>
                 
                 <p class="handwritten">Ibland handlar controller-jobbet om att göra det osynliga synligt.</p>
@@ -877,95 +876,91 @@
         
         <!-- ========== SLIDE 7: LEDNINGSGRUPPSARBETE ========== -->
         <div class="slide" data-slide="7">
-            <!-- Formell version -->
             <div class="formal-content">
                 <h2>Ledningsgruppsarbete</h2>
                 
-                <p>Tjänsten innebär en roll i sektorns ledningsgrupp och dialog med politiken. Jag har relevant erfarenhet från flera organisationer.</p>
+                <p>Tjänsten innebär en roll i sektorns ledningsgrupp och dialog med politiken.</p>
                 
                 <div class="two-columns">
                     <div class="column">
-                        <h4><span class="icon">📈</span> Ledningsgruppserfarenhet</h4>
+                        <h4><span class="icon">📈</span> Erfarenhet</h4>
                         <ul>
-                            <li><strong>SCA Packaging:</strong> Controller och administrativ chef, 70 anställda</li>
-                            <li><strong>Statens institutionsstyrelse:</strong> Ekonomiansvarig södra regionen</li>
-                            <li><strong>Simrishamn:</strong> Månadsbokslut inför presidium och nämnd</li>
+                            <li><strong>SCA Packaging:</strong> Controller och admin chef</li>
+                            <li><strong>SiS:</strong> Ekonomiansvarig södra regionen</li>
+                            <li><strong>Simrishamn:</strong> Presenterar för presidium och nämnd</li>
                         </ul>
                     </div>
                     <div class="column">
-                        <h4><span class="icon">🎤</span> Pedagogisk kommunikation</h4>
+                        <h4><span class="icon">🎤</span> Pedagogik</h4>
                         <ul>
                             <li>Diplomerad coach (ICF)</li>
                             <li>Undervisat i organisationsteori och kalkylering</li>
-                            <li>Erfarenhet av att presentera för politiskt förtroendevalda</li>
+                            <li>Van att presentera för förtroendevalda</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="highlight-box">
-                    Som controller ser jag min roll som att vara en brygga mellan verksamhet, ekonomi och politik – att översätta siffror till beslutsstöd.
+                    Min roll: att vara en brygga mellan verksamhet, ekonomi och politik – att översätta siffror till beslutsstöd.
                 </div>
             </div>
             
-            <!-- Personlig version -->
             <div class="personal-content" style="display: none;">
                 <h2>Jag trivs i ledningsgruppen! 🎯</h2>
                 
-                <p>Att sitta med i ledningsgruppen betyder att man får vara där besluten fattas. Och jag gillar att bidra med ekonomens perspektiv.</p>
+                <p>Att sitta med i ledningsgruppen betyder att man är där besluten fattas.</p>
                 
                 <div class="two-columns">
                     <div class="column">
                         <h4><span class="icon">📊</span> Vad jag bidrar med</h4>
                         <ul>
                             <li>Tydliga beslutsunderlag</li>
-                            <li>Scenarioanalyser ("om vi gör X, blir det Y")</li>
+                            <li>Scenarioanalyser</li>
                             <li>Verklighetsförankrade prognoser</li>
                         </ul>
                     </div>
                     <div class="column">
-                        <h4><span class="icon">🎓</span> Pedagogisk bakgrund</h4>
+                        <h4><span class="icon">🎓</span> Pedagogik</h4>
                         <ul>
-                            <li>Diplomerad coach (130 timmar!)</li>
+                            <li>Diplomerad coach</li>
                             <li>Undervisat på universitetet</li>
-                            <li>Van vid att förklara för politiker</li>
+                            <li>Van vid politiker</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="fun-fact">
-                    Tips: När man presenterar för politiker, börja alltid med "vad betyder detta för medborgarna?" – inte "EBITDA ökade med 3,2%". Det lärde jag mig the hard way. 😅
+                    Tips: Börja med "vad betyder detta för medborgarna?" – inte "EBITDA ökade med 3,2%". Lärde mig the hard way. 😅
                 </div>
             </div>
         </div>
         
-        <!-- ========== SLIDE 8: AI OCH FRAMTID ========== -->
+        <!-- ========== SLIDE 8: FRAMTID ========== -->
         <div class="slide" data-slide="8">
-            <!-- Formell version -->
             <div class="formal-content">
                 <h2>Digitalisering och framåtblick</h2>
                 
-                <p>Jag är övertygad om att ekonomyrket är under förändring genom digitalisering och AI. Detta skapar möjligheter till bättre struktur, effektivare processer och mer tid för analys.</p>
+                <p>Ekonomyrket förändras genom digitalisering och AI. Detta skapar möjligheter till effektivare processer och mer tid för analys.</p>
                 
-                <h3>Aktivt intresse för utveckling</h3>
+                <h3>Aktivt intresse</h3>
                 <ul>
-                    <li><strong>AI i ekonomiarbetet:</strong> Dokumenterar erfarenheter på kentlundgren.se/program/ekonom/</li>
-                    <li><strong>Kontinuerligt lärande:</strong> Kurser i digital kompetens, agil strategi och digitalisering</li>
-                    <li><strong>Programmering:</strong> Grundläggande kunskaper i HTML, CSS och JavaScript med hjälp av AI-verktyg</li>
+                    <li><strong>AI i ekonomiarbetet:</strong> Dokumenterar på kentlundgren.se/program/ekonom/</li>
+                    <li><strong>Kontinuerligt lärande:</strong> Kurser i digital kompetens och digitalisering</li>
+                    <li><strong>Programmering:</strong> HTML, CSS och JavaScript med AI-verktyg</li>
                 </ul>
                 
                 <div class="highlight-box">
-                    "Utvecklingsinriktad och nyfiken. Mod att prova nytt och öppen för förändring" – detta är en av kompetenserna som efterfrågas i kravprofilen, och det stämmer väl med hur jag ser på min yrkesroll.
+                    "Utvecklingsinriktad och nyfiken. Mod att prova nytt" – detta efterfrågas i kravprofilen och stämmer med hur jag ser på min roll.
                 </div>
                 
                 <h3>Styrelseerfarenhet</h3>
-                <p>Styrelsemedlem i Lunds Naturskyddsförening och Bjerreds saltsjöbad, revisor i Majblomman-Lund – ger praktisk insikt i ekonomi för ideell verksamhet.</p>
+                <p>Styrelsemedlem i Lunds Naturskyddsförening och Bjerreds saltsjöbad – praktisk insikt i ideell ekonomi.</p>
             </div>
             
-            <!-- Personlig version -->
             <div class="personal-content" style="display: none;">
                 <h2>Framtiden är här! 🚀</h2>
                 
-                <p>Okej, jag ska vara ärlig: Jag är lite nördig när det gäller AI och digitalisering. Men det är ju för att det är så SPÄNNANDE!</p>
+                <p>Jag är lite nördig när det gäller AI och digitalisering. Men det är för att det är SPÄNNANDE!</p>
                 
                 <h3>Vad jag pysslar med på fritiden</h3>
                 <ul>
@@ -975,20 +970,17 @@
                 </ul>
                 
                 <div class="fun-fact">
-                    Varje fredag gör jag ett quiz på min hemsida – dels för att det är kul, dels för att jag lär mig HTML, CSS och JavaScript på kuppen. Win-win! 🏆
+                    Varje fredag gör jag ett quiz på min hemsida – dels för att det är kul, dels för att jag lär mig kod på kuppen. Win-win! 🏆
                 </div>
                 
-                <p class="handwritten">Kolla gärna: kentlundgren.se/program/quiz/</p>
-                
                 <div class="highlight-box">
-                    Min syn: Den controller som lär sig använda AI kommer inte ersättas av AI. Men den som vägrar lära sig... 🤷
+                    Min syn: Den controller som lär sig använda AI kommer inte ersättas av AI. Men den som vägrar... 🤷
                 </div>
             </div>
         </div>
         
         <!-- ========== SLIDE 9: AVSLUTNING ========== -->
         <div class="slide" data-slide="9">
-            <!-- Formell version -->
             <div class="formal-content">
                 <h2>Sammanfattning</h2>
                 
@@ -1007,7 +999,6 @@
                     </div>
                     <div class="column">
                         <h4>Kontakt</h4>
-                        <p><strong>Kent Lundgren</strong></p>
                         <p>📧 lundgren.kent@gmail.com</p>
                         <p>📱 070-606 98 76</p>
                         <p>🔗 linkedin.com/in/kentlundgren</p>
@@ -1015,47 +1006,41 @@
                     </div>
                 </div>
                 
-                <div class="highlight-box" style="text-align: center; margin-top: 2rem;">
+                <div class="highlight-box" style="text-align: center; margin-top: 1.5rem;">
                     Jag ser fram emot möjligheten att diskutera hur jag kan bidra till ekonomistyrningen i Kävlinge kommun.
                 </div>
             </div>
             
-            <!-- Personlig version -->
             <div class="personal-content" style="display: none;">
                 <h2>Så... vad säger ni? 😊</h2>
                 
-                <p>Låt mig sammanfatta varför vi borde ses:</p>
-                
+                <p>Kort sammanfattning:</p>
                 <ul>
-                    <li><span class="emoji-accent">✅</span> Jag kan Hypergene (på riktigt, inte bara "har sett det")</li>
-                    <li><span class="emoji-accent">✅</span> Jag jobbar redan med exakt era verksamhetsområden</li>
-                    <li><span class="emoji-accent">✅</span> Jag gillar att vara i ledningsgruppen</li>
-                    <li><span class="emoji-accent">✅</span> Jag kan förklara ekonomi utan att folk somnar</li>
-                    <li><span class="emoji-accent">✅</span> Jag är nyfiken på framtiden och nya verktyg</li>
+                    <li><span class="emoji-accent">✅</span> Jag kan Hypergene (på riktigt)</li>
+                    <li><span class="emoji-accent">✅</span> Jobbar redan med era verksamhetsområden</li>
+                    <li><span class="emoji-accent">✅</span> Trivs i ledningsgruppen</li>
+                    <li><span class="emoji-accent">✅</span> Kan förklara ekonomi utan att folk somnar</li>
+                    <li><span class="emoji-accent">✅</span> Nyfiken på framtiden och nya verktyg</li>
                 </ul>
                 
                 <div class="highlight-box" style="text-align: center;">
                     <p><strong>Låt oss ta en fika och prata ekonomi!</strong> ☕</p>
-                    <p style="margin-top: 1rem;">📧 lundgren.kent@gmail.com | 📱 070-606 98 76</p>
+                    <p style="margin-top: 0.5rem;">📧 lundgren.kent@gmail.com | 📱 070-606 98 76</p>
                 </div>
                 
-                <p class="handwritten" style="text-align: center; margin-top: 1.5rem;">
-                    P.S. Denna presentation är byggd i HTML, CSS och JavaScript – för att visa att jag menar allvar med det där om digitalisering! 💻
+                <p class="handwritten" style="text-align: center; margin-top: 1rem;">
+                    P.S. Denna presentation är byggd i HTML/CSS/JS – för att visa att jag menar allvar med digitaliseringen! 💻
                 </p>
             </div>
         </div>
         
     </div>
     
-    <!-- ============================================
-         NAVIGATION BUTTONS
-         ============================================ -->
+    <!-- NAVIGATION -->
     <button class="nav-btn prev" id="prevBtn" onclick="changeSlide(-1)">❮</button>
     <button class="nav-btn next" id="nextBtn" onclick="changeSlide(1)">❯</button>
     
-    <!-- ============================================
-         FOOTER
-         ============================================ -->
+    <!-- FOOTER -->
     <footer>
         <div class="page-indicator">
             Sida <span class="current" id="currentSlide">1</span> (<span id="totalSlides">9</span>)
@@ -1075,211 +1060,103 @@
         </div>
     </footer>
     
-    <!-- ============================================
-         JAVASCRIPT
-         ============================================ -->
+    <!-- JAVASCRIPT -->
     <script>
-        // ============================================
-        // GLOBALA VARIABLER
-        // ============================================
-        let currentSlideIndex = 1;              // Aktuell slide (1-indexerad)
-        let isPersonalMode = false;              // Är personligt läge aktivt?
+        let currentSlideIndex = 1;
+        let isPersonalMode = false;
         const totalSlides = document.querySelectorAll('.slide').length;
         
-        // ============================================
-        // INITIALISERING
-        // ============================================
         document.addEventListener('DOMContentLoaded', function() {
-            // Uppdatera totalt antal slides i footer
             document.getElementById('totalSlides').textContent = totalSlides;
-            
-            // Uppdatera navigeringsknapparnas status
             updateNavButtons();
-            
-            // Lägg till keyboard-navigation
             document.addEventListener('keydown', handleKeyPress);
         });
         
-        // ============================================
-        // SLIDE-NAVIGATION
-        // ============================================
-        
-        /**
-         * Byter till nästa eller föregående slide
-         * @param {number} direction - 1 för nästa, -1 för föregående
-         */
         function changeSlide(direction) {
             const newIndex = currentSlideIndex + direction;
+            if (newIndex < 1 || newIndex > totalSlides) return;
             
-            // Kontrollera att vi är inom giltigt intervall
-            if (newIndex < 1 || newIndex > totalSlides) {
-                return;
-            }
-            
-            // Dölj nuvarande slide
             document.querySelector(`.slide[data-slide="${currentSlideIndex}"]`).classList.remove('active');
-            
-            // Uppdatera index och visa ny slide
             currentSlideIndex = newIndex;
             document.querySelector(`.slide[data-slide="${currentSlideIndex}"]`).classList.add('active');
             
-            // Uppdatera sidindikator och navigationsknappar
             document.getElementById('currentSlide').textContent = currentSlideIndex;
             updateNavButtons();
         }
         
-        /**
-         * Uppdaterar disabled-status på navigationsknappar
-         */
         function updateNavButtons() {
             document.getElementById('prevBtn').disabled = currentSlideIndex === 1;
             document.getElementById('nextBtn').disabled = currentSlideIndex === totalSlides;
         }
         
-        /**
-         * Går direkt till en specifik slide
-         * @param {number} slideNumber - Slidenummer att gå till
-         */
         function goToSlide(slideNumber) {
-            if (slideNumber < 1 || slideNumber > totalSlides) {
-                return;
-            }
+            if (slideNumber < 1 || slideNumber > totalSlides) return;
             
-            // Dölj nuvarande slide
             document.querySelector(`.slide[data-slide="${currentSlideIndex}"]`).classList.remove('active');
-            
-            // Visa ny slide
             currentSlideIndex = slideNumber;
             document.querySelector(`.slide[data-slide="${currentSlideIndex}"]`).classList.add('active');
             
-            // Uppdatera UI
             document.getElementById('currentSlide').textContent = currentSlideIndex;
             updateNavButtons();
         }
         
-        // ============================================
-        // LÄGESVÄXLING (FORMELL/PERSONLIG)
-        // ============================================
-        
-        /**
-         * Växlar mellan formellt och personligt läge
-         */
         function toggleMode() {
             isPersonalMode = !isPersonalMode;
-            
-            // Uppdatera body-klass för CSS-tema
             document.body.classList.toggle('personal-mode', isPersonalMode);
             
-            // Uppdatera alla slides: visa rätt content
-            const formalContents = document.querySelectorAll('.formal-content');
-            const personalContents = document.querySelectorAll('.personal-content');
-            
-            formalContents.forEach(el => {
+            document.querySelectorAll('.formal-content').forEach(el => {
                 el.style.display = isPersonalMode ? 'none' : 'block';
             });
             
-            personalContents.forEach(el => {
+            document.querySelectorAll('.personal-content').forEach(el => {
                 el.style.display = isPersonalMode ? 'block' : 'none';
             });
             
-            // Uppdatera header-titel
-            const headerTitle = document.getElementById('headerTitle');
-            headerTitle.textContent = isPersonalMode 
-                ? 'Controller – Sektor arbetsliv och fritid ✨' 
-                : 'Controller – Sektor arbetsliv och fritid';
-            
-            // Uppdatera toggle-knappen
-            document.getElementById('modeLabel').textContent = isPersonalMode 
-                ? 'Personligt läge' 
-                : 'Formellt läge';
-            document.getElementById('toggleText').textContent = isPersonalMode 
-                ? 'Formellt' 
-                : 'Personligt';
-            document.getElementById('toggleIcon').textContent = isPersonalMode 
-                ? '🎩' 
-                : '🎭';
+            document.getElementById('modeLabel').textContent = isPersonalMode ? 'Personligt läge' : 'Formellt läge';
+            document.getElementById('toggleText').textContent = isPersonalMode ? 'Formellt' : 'Personligt';
+            document.getElementById('toggleIcon').textContent = isPersonalMode ? '🎩' : '🎭';
         }
         
-        // ============================================
-        // TANGENTBORDSNAVIGATION
-        // ============================================
-        
-        /**
-         * Hanterar tangentbordstryckningar för navigation
-         * @param {KeyboardEvent} event - Tangentbordshändelsen
-         */
         function handleKeyPress(event) {
             switch(event.key) {
                 case 'ArrowRight':
                 case 'ArrowDown':
-                case ' ':          // Mellanslag
+                case ' ':
                     event.preventDefault();
                     changeSlide(1);
                     break;
-                    
                 case 'ArrowLeft':
                 case 'ArrowUp':
                     event.preventDefault();
                     changeSlide(-1);
                     break;
-                    
                 case 'm':
                 case 'M':
                     toggleMode();
                     break;
-                    
                 case 'Home':
                     event.preventDefault();
                     goToSlide(1);
                     break;
-                    
                 case 'End':
                     event.preventDefault();
                     goToSlide(totalSlides);
                     break;
             }
             
-            // Siffertangenter 1-9 för direktnavigation
             if (event.key >= '1' && event.key <= '9') {
                 const slideNum = parseInt(event.key);
-                if (slideNum <= totalSlides) {
-                    goToSlide(slideNum);
-                }
+                if (slideNum <= totalSlides) goToSlide(slideNum);
             }
         }
         
-        // ============================================
-        // TOUCH-STÖD FÖR MOBILA ENHETER
-        // ============================================
+        // Touch support
         let touchStartX = 0;
-        let touchEndX = 0;
-        
-        document.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
+        document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, false);
+        document.addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
         }, false);
-        
-        document.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, false);
-        
-        /**
-         * Hanterar swipe-gester på mobila enheter
-         */
-        function handleSwipe() {
-            const swipeThreshold = 50; // Minsta avstånd för att räknas som swipe
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    // Swipe vänster = nästa slide
-                    changeSlide(1);
-                } else {
-                    // Swipe höger = föregående slide
-                    changeSlide(-1);
-                }
-            }
-        }
     </script>
 </body>
 </html>
