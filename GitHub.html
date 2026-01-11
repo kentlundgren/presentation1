@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub Guide - Steg-för-steg</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            padding: 3rem;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 4px solid #764ba2;
+            padding-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: #764ba2;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin: 1.5rem 0;
+        }
+
+        .step-box {
+            background: #f8f9fa;
+            border-left: 5px solid #28a745;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 0.75rem;
+        }
+
+        code {
+            background: #2d2d2d;
+            color: #ffa500;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95rem;
+        }
+
+        .command-box {
+            background: #2d2d2d;
+            color: #ffffff;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            border: 2px solid #667eea;
+        }
+
+        .command-box .comment {
+            color: #888;
+            font-style: italic;
+        }
+
+        .command-box .prompt {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .command-box .command {
+            color: #ffa500;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 6px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .warning::before {
+            content: "⚠️ ";
+            font-size: 1.3rem;
+        }
+
+        .success {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            border-radius: 6px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .success::before {
+            content: "✅ ";
+            font-size: 1.3rem;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border: 2px solid #17a2b8;
+            border-radius: 6px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .info::before {
+            content: "ℹ️ ";
+            font-size: 1.3rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        .concept-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 5px;
+        }
+
+        .concept-box h4 {
+            color: #2196F3;
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: #764ba2;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Git & GitHub Guide</h1>
+        <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">
+            Steg-för-steg guide för att skapa lokalt Git-repository och koppla till GitHub
+        </p>
+
+        <!-- INTRODUKTION -->
+        <div class="intro">
+            <h3>📚 Vad är Git och GitHub?</h3>
+            <p><strong>Git</strong> är ett versionshanteringssystem som körs lokalt på din dator. Det hjälper dig att spåra ändringar i dina filer över tid.</p>
+            <p style="margin-top: 0.5rem;"><strong>GitHub</strong> är en molntjänst där du kan lagra dina Git-repositories online, dela dem med andra och samarbeta.</p>
+        </div>
+
+        <!-- KONCEPT -->
+        <h2>🧠 Viktiga koncept</h2>
+        
+        <div class="concept-box">
+            <h4>Repository (Repo)</h4>
+            <p>En "mapp" som Git övervakar. Innehåller alla dina filer plus en dold .git-mapp med versionshistorik.</p>
+        </div>
+
+        <div class="concept-box">
+            <h4>Commit</h4>
+            <p>En "ögonblicksbild" av dina filer vid en viss tidpunkt. Varje commit har ett meddelande som beskriver ändringarna.</p>
+        </div>
+
+        <div class="concept-box">
+            <h4>Remote</h4>
+            <p>En koppling till ett repository på en server (t.ex. GitHub). Kallas ofta "origin".</p>
+        </div>
+
+        <div class="concept-box">
+            <h4>Push</h4>
+            <p>Skicka dina lokala commits till GitHub.</p>
+        </div>
+
+        <div class="concept-box">
+            <h4>Pull</h4>
+            <p>Hämta ändringar från GitHub till din lokala dator.</p>
+        </div>
+
+        <!-- FÖRBEREDELSER -->
+        <h2>🔧 Förberedelser</h2>
+
+        <div class="info">
+            <strong>Innan du börjar:</strong>
+            <ul style="margin-top: 0.5rem;">
+                <li>Du måste ha Git installerat på din dator</li>
+                <li>Du måste ha ett GitHub-konto</li>
+                <li>Du har redan skapat repositoryt på GitHub: <a href="https://github.com/kentlundgren/presentation1" target="_blank">presentation1</a></li>
+            </ul>
+        </div>
+
+        <h3>Kontrollera om Git är installerat</h3>
+        <p>Öppna PowerShell och kör:</p>
+        <div class="command-box">
+<span class="prompt">PS></span> <span class="command">git --version</span>
+        </div>
+        <p>Om du ser en versionsnummer (t.ex. "git version 2.43.0") är Git installerat. Annars, ladda ner från <a href="https://git-scm.com/" target="_blank">git-scm.com</a>.</p>
+
+        <!-- STEG-FÖR-STEG -->
+        <h2>📝 Steg-för-steg: Skapa lokalt Git och koppla till GitHub</h2>
+
+        <!-- STEG 1 -->
+        <div class="step-box">
+            <h3><span class="step-number">1</span> Navigera till din projektmapp</h3>
+            <p>Öppna PowerShell och gå till mappen där dina filer ligger:</p>
+            <div class="command-box">
+<span class="comment"># Navigera till din projektmapp</span>
+<span class="prompt">PS></span> <span class="command">cd "D:\VåraFiler_primära_på_SSD\Kent_dokument\Data\HTML\kentlundgren_se\arbete\presentation"</span>
+
+<span class="comment"># Kontrollera att du är i rätt mapp</span>
+<span class="prompt">PS></span> <span class="command">pwd</span>
+
+<span class="comment"># Lista filerna i mappen</span>
+<span class="prompt">PS></span> <span class="command">ls</span>
+            </div>
+            <p>Du bör se dina filer: <code>index.html</code> och <code>GitHub.html</code></p>
+        </div>
+
+        <!-- STEG 2 -->
+        <div class="step-box">
+            <h3><span class="step-number">2</span> Skapa ett lokalt Git-repository</h3>
+            <p>Initiera Git i din mapp:</p>
+            <div class="command-box">
+<span class="comment"># Detta skapar en dold .git-mapp som innehåller all versionshistorik</span>
+<span class="prompt">PS></span> <span class="command">git init</span>
+            </div>
+            <div class="success">
+                <strong>Du bör se:</strong> "Initialized empty Git repository in ..."
+            </div>
+        </div>
+
+        <!-- STEG 3 -->
+        <div class="step-box">
+            <h3><span class="step-number">3</span> Konfigurera Git (om du inte redan gjort det)</h3>
+            <p>Git behöver veta vem du är för att märka dina commits:</p>
+            <div class="command-box">
+<span class="comment"># Sätt ditt namn</span>
+<span class="prompt">PS></span> <span class="command">git config --global user.name "Kent Lundgren"</span>
+
+<span class="comment"># Sätt din email (samma som på GitHub)</span>
+<span class="prompt">PS></span> <span class="command">git config --global user.email "lundgren.kent@gmail.com"</span>
+
+<span class="comment"># Kontrollera inställningarna</span>
+<span class="prompt">PS></span> <span class="command">git config --list</span>
+            </div>
+            <p><strong>OBS!</strong> Använd den email-adress som är kopplad till ditt GitHub-konto.</p>
+        </div>
+
+        <!-- STEG 4 -->
+        <div class="step-box">
+            <h3><span class="step-number">4</span> Skapa en README-fil (rekommenderat)</h3>
+            <p>En README-fil beskriver ditt projekt. Du kan skapa en enkel:</p>
+            <div class="command-box">
+<span class="comment"># Skapa README.md med PowerShell</span>
+<span class="prompt">PS></span> <span class="command">echo "# Presentation - Kent Lundgren" > README.md</span>
+<span class="prompt">PS></span> <span class="command">echo "Professionell presentation byggd med HTML, CSS och JavaScript" >> README.md</span>
+            </div>
+        </div>
+
+        <!-- STEG 5 -->
+        <div class="step-box">
+            <h3><span class="step-number">5</span> Lägg till filer till Git (staging)</h3>
+            <p>Berätta för Git vilka filer som ska spåras:</p>
+            <div class="command-box">
+<span class="comment"># Lägg till alla filer i mappen</span>
+<span class="prompt">PS></span> <span class="command">git add .</span>
+
+<span class="comment"># Eller lägg till specifika filer:</span>
+<span class="prompt">PS></span> <span class="command">git add index.html</span>
+<span class="prompt">PS></span> <span class="command">git add GitHub.html</span>
+<span class="prompt">PS></span> <span class="command">git add README.md</span>
+
+<span class="comment"># Kontrollera status</span>
+<span class="prompt">PS></span> <span class="command">git status</span>
+            </div>
+            <div class="info">
+                <strong>Förklaring:</strong> <code>git add</code> lägger filer i "staging area" - de är klara att committas men inte ännu sparade i historiken.
+            </div>
+        </div>
+
+        <!-- STEG 6 -->
+        <div class="step-box">
+            <h3><span class="step-number">6</span> Skapa din första commit</h3>
+            <p>Spara en ögonblicksbild av dina filer:</p>
+            <div class="command-box">
+<span class="comment"># Skapa commit med ett beskrivande meddelande</span>
+<span class="prompt">PS></span> <span class="command">git commit -m "Initial commit: Presentation och Git-guide"</span>
+            </div>
+            <div class="success">
+                <strong>Grattis!</strong> Du har nu sparat din första version i Git-historiken.
+            </div>
+            <div class="info">
+                <strong>Tips:</strong> Använd beskrivande commit-meddelanden. T.ex:
+                <ul style="margin-top: 0.5rem;">
+                    <li>"Initial commit: Lägg till presentationssidor"</li>
+                    <li>"Uppdatera: Förbättrad stilsättning"</li>
+                    <li>"Fixa: Korrigera stavfel i slide 3"</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- STEG 7 -->
+        <div class="step-box">
+            <h3><span class="step-number">7</span> Koppla till ditt GitHub-repository</h3>
+            <p>Lägg till GitHub som "remote" (fjärrlagring):</p>
+            <div class="command-box">
+<span class="comment"># Lägg till remote som heter "origin"</span>
+<span class="prompt">PS></span> <span class="command">git remote add origin https://github.com/kentlundgren/presentation1.git</span>
+
+<span class="comment"># Kontrollera att det fungerade</span>
+<span class="prompt">PS></span> <span class="command">git remote -v</span>
+            </div>
+            <p>Du bör se två rader som pekar på ditt GitHub-repo (fetch och push).</p>
+        </div>
+
+        <!-- STEG 8 -->
+        <div class="step-box">
+            <h3><span class="step-number">8</span> Byt till main-branchen</h3>
+            <p>GitHub använder "main" som standardgren (förut hette det "master"):</p>
+            <div class="command-box">
+<span class="comment"># Döp om din branch från master till main</span>
+<span class="prompt">PS></span> <span class="command">git branch -M main</span>
+            </div>
+        </div>
+
+        <!-- STEG 9 -->
+        <div class="step-box">
+            <h3><span class="step-number">9</span> Pusha (ladda upp) till GitHub</h3>
+            <p>Skicka dina filer till GitHub:</p>
+            <div class="command-box">
+<span class="comment"># Första gången du pushar (sätter upstream)</span>
+<span class="prompt">PS></span> <span class="command">git push -u origin main</span>
+            </div>
+            
+            <div class="warning">
+                <strong>Första gången:</strong> Du kan bli ombedd att logga in på GitHub. Det finns olika sätt:
+                <ul style="margin-top: 0.5rem;">
+                    <li><strong>HTTPS:</strong> Du får en inloggningsdialog (enklast)</li>
+                    <li><strong>SSH:</strong> Kräver setup av SSH-nycklar (säkrare men krångligare)</li>
+                    <li><strong>Personal Access Token:</strong> Skapa en token på GitHub och använd istället för lösenord</li>
+                </ul>
+            </div>
+
+            <div class="success">
+                <strong>Klart!</strong> Dina filer finns nu på GitHub. Gå till <a href="https://github.com/kentlundgren/presentation1" target="_blank">https://github.com/kentlundgren/presentation1</a> och se ditt repo!
+            </div>
+        </div>
+
+        <!-- FRAMTIDA ANVÄNDNING -->
+        <h2>🔄 Framtida arbetsflöde</h2>
+
+        <p>När du gör ändringar i dina filer framöver:</p>
+
+        <div class="step-box">
+            <h3>Vardagligt arbetsflöde</h3>
+            <div class="command-box">
+<span class="comment"># 1. Kontrollera status (vilka filer har ändrats?)</span>
+<span class="prompt">PS></span> <span class="command">git status</span>
+
+<span class="comment"># 2. Lägg till ändrade filer</span>
+<span class="prompt">PS></span> <span class="command">git add .</span>
+<span class="comment"># Eller specifika filer:</span>
+<span class="prompt">PS></span> <span class="command">git add index.html</span>
+
+<span class="comment"># 3. Committa med beskrivande meddelande</span>
+<span class="prompt">PS></span> <span class="command">git commit -m "Uppdatera: Ändra färgschema i presentationen"</span>
+
+<span class="comment"># 4. Pusha till GitHub</span>
+<span class="prompt">PS></span> <span class="command">git push</span>
+            </div>
+        </div>
+
+        <div class="info">
+            <strong>Kom ihåg:</strong> Du behöver inte pusha efter varje commit. Du kan göra flera commits lokalt och sedan pusha alla samtidigt.
+        </div>
+
+        <!-- ANVÄNDBARA KOMMANDON -->
+        <h2>🛠️ Användbara Git-kommandon</h2>
+
+        <h3>Visa historik</h3>
+        <div class="command-box">
+<span class="comment"># Visa commit-historik</span>
+<span class="prompt">PS></span> <span class="command">git log</span>
+
+<span class="comment"># Kompakt vy av historik</span>
+<span class="prompt">PS></span> <span class="command">git log --oneline</span>
+
+<span class="comment"># Grafisk vy av branches</span>
+<span class="prompt">PS></span> <span class="command">git log --oneline --graph --all</span>
+        </div>
+
+        <h3>Se ändringar</h3>
+        <div class="command-box">
+<span class="comment"># Visa ändringar i arbetskopian (ej staged)</span>
+<span class="prompt">PS></span> <span class="command">git diff</span>
+
+<span class="comment"># Visa staged ändringar</span>
+<span class="prompt">PS></span> <span class="command">git diff --staged</span>
+        </div>
+
+        <h3>Ångra ändringar</h3>
+        <div class="command-box">
+<span class="comment"># Ångra ändringar i en fil (går ej ångra!)</span>
+<span class="prompt">PS></span> <span class="command">git checkout -- filnamn.html</span>
+
+<span class="comment"># Ta bort fil från staging (behåll ändringar)</span>
+<span class="prompt">PS></span> <span class="command">git reset HEAD filnamn.html</span>
+
+<span class="comment"># Ångra senaste commit (behåll ändringar)</span>
+<span class="prompt">PS></span> <span class="command">git reset --soft HEAD~1</span>
+        </div>
+
+        <h3>Hämta från GitHub</h3>
+        <div class="command-box">
+<span class="comment"># Hämta senaste ändringar från GitHub</span>
+<span class="prompt">PS></span> <span class="command">git pull</span>
+        </div>
+
+        <!-- .GITIGNORE -->
+        <h2>📄 .gitignore - Ignorera filer</h2>
+
+        <p>En <code>.gitignore</code>-fil talar om för Git vilka filer som ska <strong>inte</strong> spåras.</p>
+
+        <h3>Skapa .gitignore</h3>
+        <p>Skapa en fil som heter <code>.gitignore</code> i din projektmapp med följande innehåll:</p>
+        
+        <div class="command-box">
+<span class="comment"># Windows-filer</span>
+Thumbs.db
+Desktop.ini
+
+<span class="comment"># macOS-filer</span>
+.DS_Store
+
+<span class="comment"># Editor-filer</span>
+.vscode/
+.idea/
+*.swp
+*.swo
+
+<span class="comment"># Node modules (om du använder npm)</span>
+node_modules/
+
+<span class="comment"># Temporära filer</span>
+*.tmp
+*.log
+
+<span class="comment"># Personliga anteckningar</span>
+notes.txt
+private/
+        </div>
+
+        <div class="info">
+            <strong>Varför .gitignore?</strong> Det förhindrar att du av misstag pushar:
+            <ul style="margin-top: 0.5rem;">
+                <li>Systemfiler (Thumbs.db, .DS_Store)</li>
+                <li>Stora npm/node_modules-mappar</li>
+                <li>Privata konfigurationsfiler</li>
+                <li>Tillfälliga filer</li>
+            </ul>
+        </div>
+
+        <h3>Lägg till .gitignore i ditt repo</h3>
+        <div class="command-box">
+<span class="comment"># Efter att du skapat .gitignore-filen:</span>
+<span class="prompt">PS></span> <span class="command">git add .gitignore</span>
+<span class="prompt">PS></span> <span class="command">git commit -m "Lägg till .gitignore"</span>
+<span class="prompt">PS></span> <span class="command">git push</span>
+        </div>
+
+        <!-- BRANCHES -->
+        <h2>🌿 Branches (Grenar)</h2>
+
+        <div class="concept-box">
+            <h4>Vad är en branch?</h4>
+            <p>En branch är en "parallell version" av ditt projekt. Du kan experimentera på en branch utan att påverka huvudkoden (main).</p>
+        </div>
+
+        <h3>Arbeta med branches</h3>
+        <div class="command-box">
+<span class="comment"># Lista alla branches</span>
+<span class="prompt">PS></span> <span class="command">git branch</span>
+
+<span class="comment"># Skapa ny branch</span>
+<span class="prompt">PS></span> <span class="command">git branch feature-ny-funktion</span>
+
+<span class="comment"># Byt till en branch</span>
+<span class="prompt">PS></span> <span class="command">git checkout feature-ny-funktion</span>
+
+<span class="comment"># Skapa OCH byt till ny branch (kortkommando)</span>
+<span class="prompt">PS></span> <span class="command">git checkout -b feature-ny-funktion</span>
+
+<span class="comment"># Byt tillbaka till main</span>
+<span class="prompt">PS></span> <span class="command">git checkout main</span>
+
+<span class="comment"># Ta bort en branch (lokalt)</span>
+<span class="prompt">PS></span> <span class="command">git branch -d feature-ny-funktion</span>
+        </div>
+
+        <h3>Merge (slå ihop) branches</h3>
+        <div class="command-box">
+<span class="comment"># 1. Gå till main-branchen</span>
+<span class="prompt">PS></span> <span class="command">git checkout main</span>
+
+<span class="comment"># 2. Slå ihop feature-branchen med main</span>
+<span class="prompt">PS></span> <span class="command">git merge feature-ny-funktion</span>
+
+<span class="comment"># 3. Pusha ändringarna</span>
+<span class="prompt">PS></span> <span class="command">git push</span>
+        </div>
+
+        <!-- FELSÖKNING -->
+        <h2>🔍 Felsökning</h2>
+
+        <h3>Problem: "Permission denied" vid push</h3>
+        <div class="warning">
+            <strong>Lösning:</strong> Du behöver autentisera dig. Alternativ:
+            <ul style="margin-top: 0.5rem;">
+                <li>Använd GitHub Desktop (grafiskt verktyg)</li>
+                <li>Skapa Personal Access Token på GitHub → Settings → Developer settings → Personal access tokens</li>
+                <li>Sätt upp SSH-nycklar (guide: <a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh" target="_blank">docs.github.com/ssh</a>)</li>
+            </ul>
+        </div>
+
+        <h3>Problem: "Failed to push" - rejected</h3>
+        <div class="warning">
+            <strong>Orsak:</strong> GitHub har ändringar som du inte har lokalt.
+            <br><strong>Lösning:</strong> Hämta ändringar först:
+            <div class="command-box" style="margin-top: 0.5rem;">
+<span class="prompt">PS></span> <span class="command">git pull</span>
+<span class="prompt">PS></span> <span class="command">git push</span>
+            </div>
+        </div>
+
+        <h3>Problem: Merge conflict</h3>
+        <div class="warning">
+            <strong>Orsak:</strong> Samma rad har ändrats både lokalt och på GitHub.
+            <br><strong>Lösning:</strong> Öppna filen, leta efter konfliktmarkörer (<code>&lt;&lt;&lt;&lt;&lt;</code>, <code>=====</code>, <code>&gt;&gt;&gt;&gt;&gt;</code>), redigera manuellt, spara och committa.
+        </div>
+
+        <!-- RESURSER -->
+        <h2>📚 Lär dig mer</h2>
+
+        <ul>
+            <li><strong>GitHub Docs:</strong> <a href="https://docs.github.com/" target="_blank">docs.github.com</a></li>
+            <li><strong>Git cheat sheet:</strong> <a href="https://education.github.com/git-cheat-sheet-education.pdf" target="_blank">Git Cheat Sheet (PDF)</a></li>
+            <li><strong>Interactive tutorial:</strong> <a href="https://learngitbranching.js.org/" target="_blank">learngitbranching.js.org</a></li>
+            <li><strong>GitHub Desktop:</strong> <a href="https://desktop.github.com/" target="_blank">Grafisk Git-klient</a></li>
+            <li><strong>Pro Git-boken (gratis):</strong> <a href="https://git-scm.com/book/sv/v2" target="_blank">git-scm.com/book</a></li>
+        </ul>
+
+        <!-- SAMMANFATTNING -->
+        <h2>✅ Snabb sammanfattning</h2>
+
+        <div class="success">
+            <strong>För att komma igång:</strong>
+            <div class="command-box" style="margin-top: 0.5rem;">
+<span class="comment"># 1. Skapa lokalt repo</span>
+<span class="prompt">PS></span> <span class="command">git init</span>
+
+<span class="comment"># 2. Lägg till filer</span>
+<span class="prompt">PS></span> <span class="command">git add .</span>
+
+<span class="comment"># 3. Första commit</span>
+<span class="prompt">PS></span> <span class="command">git commit -m "Initial commit"</span>
+
+<span class="comment"># 4. Koppla till GitHub</span>
+<span class="prompt">PS></span> <span class="command">git remote add origin https://github.com/kentlundgren/presentation1.git</span>
+
+<span class="comment"># 5. Byt branch-namn</span>
+<span class="prompt">PS></span> <span class="command">git branch -M main</span>
+
+<span class="comment"># 6. Pusha till GitHub</span>
+<span class="prompt">PS></span> <span class="command">git push -u origin main</span>
+            </div>
+        </div>
+
+        <div class="success">
+            <strong>Dagligt arbetsflöde:</strong>
+            <div class="command-box" style="margin-top: 0.5rem;">
+<span class="prompt">PS></span> <span class="command">git status</span>        <span class="comment"># Kontrollera ändringar</span>
+<span class="prompt">PS></span> <span class="command">git add .</span>          <span class="comment"># Lägg till alla ändringar</span>
+<span class="prompt">PS></span> <span class="command">git commit -m "Beskrivning"</span>
+<span class="prompt">PS></span> <span class="command">git push</span>           <span class="comment"># Ladda upp till GitHub</span>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>Git & GitHub Guide</strong> - Skapad för presentation-projektet</p>
+            <p>Kent Lundgren | <a href="https://github.com/kentlundgren" target="_blank">github.com/kentlundgren</a></p>
+            <p style="margin-top: 1rem; font-size: 0.85rem;">Lycka till med Git och GitHub! 🚀</p>
+        </div>
+    </div>
+</body>
+</html>
