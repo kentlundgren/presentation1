@@ -2,6 +2,11 @@
 
 Professionell presentation byggd med HTML, CSS och JavaScript.
 
+## 🌐 Länkar
+
+- **🔴 Live presentation:** [https://kentlundgren.github.io/presentation1/](https://kentlundgren.github.io/presentation1/)
+- **📁 GitHub repository:** [https://github.com/kentlundgren/presentation1](https://github.com/kentlundgren/presentation1)
+
 ## Innehåll
 - `index.html` - Huvudpresentationen med två lägen (formellt/personligt)
 - `GitHub.html` - Steg-för-steg guide för Git och GitHub
