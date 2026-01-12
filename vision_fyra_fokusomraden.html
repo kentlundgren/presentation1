@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kävlinge kommun - Vision & Styrmodell</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header .vision {
+            font-size: 2rem;
+            font-style: italic;
+            color: #c4a35a;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* UPPDATERING: Huvudvisualisering - Organisk mindmap-stil */
+        .mindmap-container {
+            position: relative;
+            min-height: 1000px;
+            margin: 3rem 0;
+        }
+
+        .vision-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(135deg, #c4a35a 0%, #d4b36a 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(196, 163, 90, 0.4);
+            z-index: 10;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 5px solid white;
+        }
+
+        .vision-center:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 25px 70px rgba(196, 163, 90, 0.6);
+        }
+
+        .vision-center h2 {
+            font-size: 1.8rem;
+            color: white;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .vision-center .subtitle {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+        }
+
+        /* UPPDATERING: Fyra fokusområden - placerade runt visionen */
+        .focus-area {
+            position: absolute;
+            width: 220px;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 5px solid #1a5a3a;
+        }
+
+        .focus-area:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .focus-area h3 {
+            color: #1a5a3a;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .focus-area p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Positionering av fokusområden */
+        .focus-1 { top: 5%; left: 15%; border-left-color: #2196F3; }
+        .focus-2 { top: 5%; right: 15%; border-left-color: #4CAF50; }
+        .focus-3 { bottom: 5%; left: 15%; border-left-color: #FF9800; }
+        .focus-4 { bottom: 5%; right: 15%; border-left-color: #E91E63; }
+
+        /* UPPDATERING: Styrmodellens fyra element */
+        .model-element {
+            position: absolute;
+            width: 180px;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .model-element:hover {
+            border-color: #c4a35a;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+        }
+
+        .model-element h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .model-element ul {
+            list-style: none;
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .model-element li {
+            margin-bottom: 0.3rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .model-element li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #c4a35a;
+        }
+
+        /* Positionering av styrmodellens element */
+        .model-malstyrning { top: 50%; left: 2%; transform: translateY(-50%); }
+        .model-forutsattningar { top: 20%; left: 50%; transform: translateX(-50%); }
+        .model-kvalitet { top: 50%; right: 2%; transform: translateY(-50%); }
+        .model-kultur { bottom: 15%; left: 50%; transform: translateX(-50%); }
+
+        /* UPPDATERING: Organisationskulturens teori-sektion */
+        .theory-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+        }
+
+        .theory-section h3 {
+            color: #1a5a3a;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .culture-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .culture-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .culture-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .culture-box h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .culture-box p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .culture-box ul {
+            list-style: none;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .culture-box li {
+            margin: 0.5rem 0;
+            padding: 0.3rem;
+            background: rgba(255,255,255,0.5);
+            border-radius: 5px;
+        }
+
+        /* Öppenhet - Förutsättning */
+        .openness {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border: 3px solid #2196F3;
+        }
+
+        .openness h4 { color: #1976D2; }
+
+        /* Engagemang - Bidrag */
+        .engagement {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border: 3px solid #4CAF50;
+        }
+
+        .engagement h4 { color: #388E3C; }
+
+        /* Utveckling - Resultat */
+        .development {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border: 3px solid #FF9800;
+        }
+
+        .development h4 { color: #F57C00; }
+
+        /* Pilar mellan kulturboxarna */
+        .arrow {
+            font-size: 2rem;
+            color: #c4a35a;
+            font-weight: bold;
+        }
+
+        /* UPPDATERING: Teoretisk grund */
+        .research-box {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            border-left: 5px solid #c4a35a;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .research-box h4 {
+            color: #1a5a3a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .research-box p {
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .research-box .citation {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Interaktiva element */
+        .highlight-connection {
+            stroke: #c4a35a;
+            stroke-width: 3;
+            stroke-dasharray: 5, 5;
+            animation: dash 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -100;
+            }
+        }
+
+        /* SVG för kopplingar */
+        .connections-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Tillbaka-knapp */
+        .back-button {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            color: #1a5a3a;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: #1a5a3a;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Modal för mer information */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        @media (max-width: 1200px) {
+            .mindmap-container {
+                min-height: 1500px;
+            }
+            
+            .focus-area, .model-element {
+                position: relative !important;
+                margin: 1rem auto !important;
+                transform: none !important;
+                left: auto !important;
+                right: auto !important;
+                top: auto !important;
+                bottom: auto !important;
+            }
+
+            .vision-center {
+                position: relative !important;
+                margin: 2rem auto !important;
+                transform: none !important;
+            }
+
+            .culture-flow {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header .vision {
+                font-size: 1.5rem;
+            }
+
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">← Tillbaka till presentationen</a>
+
+    <div class="container">
+        <header>
+            <h1>Kävlinge kommuns styrmodell</h1>
+            <div class="vision">"Vi formar framtiden"</div>
+            <p>En organisk modell där vision, styrning och kultur skapar förändring</p>
+        </header>
+
+        <!-- HUVUDVISUALISERING: Mindmap -->
+        <div class="mindmap-container">
+            <!-- SVG för kopplingar mellan element -->
+            <svg class="connections-svg">
+                <!-- Kopplingar från vision till fokusområden -->
+                <line x1="50%" y1="50%" x2="25%" y2="15%" class="highlight-connection" />
+                <line x1="50%" y1="50%" x2="75%" y2="15%" class="highlight-connection" />
+                <line x1="50%" y1="50%" x2="25%" y2="85%" class="highlight-connection" />
+                <line x1="50%" y1="50%" x2="75%" y2="85%" class="highlight-connection" />
+                
+                <!-- Kopplingar från vision till styrmodellens element -->
+                <line x1="50%" y1="50%" x2="10%" y2="50%" class="highlight-connection" />
+                <line x1="50%" y1="50%" x2="90%" y2="50%" class="highlight-connection" />
+                <line x1="50%" y1="50%" x2="50%" y2="25%" class="highlight-connection" />
+                <line x1="50%" y1="50%" x2="50%" y2="80%" class="highlight-connection" />
+            </svg>
+
+            <!-- VISION I CENTRUM -->
+            <div class="vision-center" onclick="showModal('vision')">
+                <h2>Vi formar<br>framtiden</h2>
+                <div class="subtitle">Kävlinge kommun</div>
+            </div>
+
+            <!-- FYRA FOKUSOMRÅDEN -->
+            <div class="focus-area focus-1" onclick="showModal('focus1')">
+                <h3>👶 Barn och unga</h3>
+                <p>Möjliggöra de bästa förutsättningarna för barn och unga att utvecklas</p>
+            </div>
+
+            <div class="focus-area focus-2" onclick="showModal('focus2')">
+                <h3>💡 Smart kommun</h3>
+                <p>Skapa en smartare kommun genom samskapande och innovativa lösningar</p>
+            </div>
+
+            <div class="focus-area focus-3" onclick="showModal('focus3')">
+                <h3>🌱 Hållbarhet</h3>
+                <p>Välja hållbara lösningar för god tillväxt och bättre klimat</p>
+            </div>
+
+            <div class="focus-area focus-4" onclick="showModal('focus4')">
+                <h3>🛡️ Trygghet</h3>
+                <p>Genom samverkan skapa en tryggare och säkrare kommun</p>
+            </div>
+
+            <!-- STYRMODELLENS ELEMENT -->
+            <div class="model-element model-malstyrning" onclick="showModal('malstyrning')">
+                <h4>📊 Målstyrning</h4>
+                <ul>
+                    <li>7 kommunövergripande mål</li>
+                    <li>Mätbara och tydliga</li>
+                    <li>Från vision till handling</li>
+                </ul>
+            </div>
+
+            <div class="model-element model-forutsattningar" onclick="showModal('forutsattningar')">
+                <h4>🏗️ Förutsättningar</h4>
+                <ul>
+                    <li>Sunda finanser</li>
+                    <li>Attraktiv arbetsgivare</li>
+                    <li>Hållbarhet</li>
+                </ul>
+            </div>
+
+            <div class="model-element model-kvalitet" onclick="showModal('kvalitet')">
+                <h4>⭐ Kvalitetsledning</h4>
+                <ul>
+                    <li>Kontinuerlig förbättring</li>
+                    <li>Säkra grunduppdraget</li>
+                    <li>Utveckla tjänster</li>
+                </ul>
+            </div>
+
+            <div class="model-element model-kultur" onclick="showModal('kultur')">
+                <h4>❤️ Organisationskultur</h4>
+                <ul>
+                    <li>Öppenhet</li>
+                    <li>Engagemang</li>
+                    <li>Utveckling</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ORGANISATIONSKULTURENS DYNAMIK - Kent Lundgrens teori -->
+        <div class="theory-section">
+            <h3>🎯 Organisationskulturens dynamik: En teori om förändring</h3>
+            
+            <div class="culture-flow">
+                <div class="culture-box openness">
+                    <h4>🔓 Öppenhet</h4>
+                    <p><strong>Förutsättningen</strong></p>
+                    <ul>
+                        <li><strong>Förtroende</strong> - Vi delar och känner tillit</li>
+                        <li><strong>Inkluderande</strong> - Vi är välkomnande</li>
+                        <li><strong>Lyhörda</strong> - Vi lyssnar och agerar</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; font-style: italic;">
+                        Utan öppenhet finns ingen grund för förändring
+                    </p>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="culture-box engagement">
+                    <h4>🔥 Engagemang</h4>
+                    <p><strong>Bidraget</strong></p>
+                    <ul>
+                        <li><strong>Intresserade</strong> - Vi bryr oss</li>
+                        <li><strong>Handlingskraftiga</strong> - Vi är beslutsamma</li>
+                        <li><strong>Ansvarstagande</strong> - Vi tar initiativ</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; font-style: italic;">
+                        Öppenhet möjliggör genuint engagemang
+                    </p>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="culture-box development">
+                    <h4>🚀 Utveckling</h4>
+                    <p><strong>Resultatet</strong></p>
+                    <ul>
+                        <li><strong>Nyfikna</strong> - Vi lär av varandra</li>
+                        <li><strong>Resultatinriktade</strong> - Vi är fokuserade</li>
+                        <li><strong>Modiga</strong> - Vi vågar tänka nytt</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; font-style: italic;">
+                        Engagemang leder till innovation och resultat
+                    </p>
+                </div>
+            </div>
+
+            <div class="research-box">
+                <h4>💡 Särskilt om "MODIGA"</h4>
+                <p>
+                    <strong>Mod är både förutsättning OCH resultat.</strong> I en öppen kultur där förtroende, 
+                    inkludering och lyhördhet råder vågar medarbetare ta risker, ifrågasätta och föreslå nya lösningar. 
+                    Samtidigt skapar själva modet att prova nytt en ännu mer öppen kultur - det är en positiv spiral.
+                </p>
+                <p>
+                    Detta stämmer väl överens med Amy Edmondsons forskning om <strong>psykologisk trygghet</strong> 
+                    (psychological safety) - att team som känner sig trygga att ta risker presterar bättre, 
+                    innoverar mer och lär sig snabbare.
+                </p>
+                <p class="citation">
+                    Edmondson, A. (2019). The Fearless Organization: Creating Psychological Safety in the Workplace 
+                    for Learning, Innovation, and Growth. Wiley.
+                </p>
+            </div>
+        </div>
+
+        <!-- FORSKNINGSGRUND -->
+        <div class="theory-section">
+            <h3>📚 Teoretisk grund och forskning</h3>
+
+            <div class="research-box">
+                <h4>🔬 Psykologisk trygghet och innovation</h4>
+                <p>
+                    Amy Edmondsons banbrytande forskning visar att <strong>psykologisk trygghet</strong> är den 
+                    viktigaste faktorn för högpresterande team. Team där medlemmar känner sig trygga att uttrycka 
+                    åsikter, erkänna misstag och ta risker uppvisar betydligt högre innovation och lärande.
+                </p>
+                <p>
+                    Kävlinge kommuns fokus på <strong>öppenhet</strong> (förtroende, inkludering, lyhördhet) 
+                    skapar just denna psykologiska trygghet som är grunden för innovation.
+                </p>
+                <p class="citation">
+                    Edmondson, A. C. (2018). The Importance of Psychological Safety. Harvard Business Review.
+                </p>
+            </div>
+
+            <div class="research-box">
+                <h4>💪 Medarbetarengagemang och organisationsprestanda</h4>
+                <p>
+                    Gallups forskning över flera decennier visar tydliga samband mellan medarbetarengagemang och 
+                    organisatoriska resultat. Organisationer med högt engagemang har:
+                </p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>23% högre lönsamhet</li>
+                    <li>81% lägre frånvaro</li>
+                    <li>14% högre produktivitet</li>
+                    <li>Bättre kundnöjdhet och kvalitet</li>
+                </ul>
+                <p>
+                    Nyckelord i Gallups forskning: <strong>handlingskraft, ansvarstagande och intresse</strong> 
+                    - exakt de element som finns i Kävlinge kommuns "Engagemang".
+                </p>
+                <p class="citation">
+                    Gallup (2023). State of the Global Workplace Report.
+                </p>
+            </div>
+
+            <div class="research-box">
+                <h4>🏛️ Offentlig innovation och organisationskultur</h4>
+                <p>
+                    Forskning om svensk offentlig sektor visar att framgångsrik innovation i kommuner kräver:
+                </p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li><strong>Öppna strukturer</strong> som möjliggör samverkan över gränser</li>
+                    <li><strong>Engagerade medarbetare</strong> som drivs av meningsfullhet</li>
+                    <li><strong>Mod att experimentera</strong> och acceptera misslyckanden som lärandetillfällen</li>
+                    <li><strong>Tydlig vision</strong> som ger riktning utan att begränsa kreativitet</li>
+                </ul>
+                <p>
+                    Kävlinge kommuns modell speglar denna forskning på ett närmast perfekt sätt.
+                </p>
+                <p class="citation">
+                    Hartley, J. et al. (2013). Public Value and Innovation in the Public Sector. 
+                    Public Management Review, 15(7).
+                </p>
+            </div>
+
+            <div class="research-box">
+                <h4>🔄 Från vision till handling: Målstyrningens roll</h4>
+                <p>
+                    Forskning om målstyrning (Management by Objectives) visar att framgångsrik målstyrning kräver:
+                </p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>Tydlig koppling mellan vision och operativa mål</li>
+                    <li>Medarbetarnas delaktighet i målformuleringsprocessen (engagemang!)</li>
+                    <li>Balans mellan ekonomiska och kvalitativa mål</li>
+                    <li>Kontinuerlig uppföljning och lärande (kvalitetsledning!)</li>
+                </ul>
+                <p>
+                    Kävlinge kommuns modell med 7 tydliga mål kopplade till vision och fokusområden, 
+                    tillsammans med kvalitetsledning och en öppen kultur, skapar förutsättningar för detta.
+                </p>
+                <p class="citation">
+                    Drucker, P. F. (2006). The Practice of Management. Harper Business. (Klassiker, fortfarande relevant)
+                </p>
+            </div>
+
+            <div class="research-box">
+                <h4>🌟 Sammanfattning: En evidensbaserad styrmodell</h4>
+                <p>
+                    Kävlinge kommuns styrmodell är inte bara vackra ord - den är <strong>djupt förankrad i 
+                    modern organisationsforskning</strong>:
+                </p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li><strong>Öppenhet</strong> skapar psykologisk trygghet (Edmondson)</li>
+                    <li><strong>Engagemang</strong> driver prestation och kvalitet (Gallup)</li>
+                    <li><strong>Utveckling</strong> kräver mod och experimentlusta (Hartley)</li>
+                    <li><strong>Målstyrning</strong> ger riktning utan att kväva kreativitet (Drucker)</li>
+                    <li><strong>Kvalitetsledning</strong> säkrar kontinuerligt lärande</li>
+                    <li><strong>Vision</strong> skapar mening och sammanhang</li>
+                </ul>
+                <p>
+                    Som <strong>controller i denna organisation</strong> får du möjlighet att arbeta i en 
+                    miljö där ekonomistyrning inte bara handlar om siffror, utan om att bidra till en 
+                    kultur av öppenhet, engagemang och utveckling - det är verkligen att "forma framtiden"!
+                </p>
+            </div>
+        </div>
+
+        <!-- SLUTLIG REFLEKTION -->
+        <div class="theory-section" style="background: linear-gradient(135deg, #1a5a3a 0%, #2d7a52 100%); color: white;">
+            <h3 style="color: #c4a35a;">💭 Slutlig reflektion</h3>
+            <p style="color: white; font-size: 1.1rem; line-height: 1.8;">
+                Det som gör Kävlinge kommuns styrmodell särskilt kraftfull är <strong>helheten</strong>. 
+                Det räcker inte med en vision, eller med mål, eller med kultur - det är i 
+                <strong>samspelet mellan alla element</strong> som magin uppstår.
+            </p>
+            <p style="color: white; font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                <strong>Öppenhet</strong> är fundamentet, <strong>Engagemang</strong> är motorn, 
+                och <strong>Utveckling</strong> är destinationen. Men resan är aldrig slut - 
+                utveckling leder till nya insikter som kräver nya former av öppenhet, vilket driver 
+                nytt engagemang... det är en ständigt pågående <strong>positiv spiral</strong>.
+            </p>
+            <p style="color: white; font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                Som controller i Kävlinge kommun blir du inte bara en ekonomisk rådgivare - 
+                du blir en <strong>möjliggörare av förändring</strong>, en <strong>katalysator för utveckling</strong>, 
+                och en <strong>brygga mellan vision och verklighet</strong>.
+            </p>
+            <p style="color: #c4a35a; font-size: 1.3rem; font-weight: bold; text-align: center; margin-top: 2rem;">
+                Det är så man formar framtiden. 🌟
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal för detaljerad information -->
+    <div class="modal" id="infoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // UPPDATERING 2026-01-12: Interaktiv funktionalitet för visualiseringen
+
+        const modalData = {
+            vision: {
+                title: '🎯 Vi formar framtiden',
+                content: `
+                    <p><strong>Kävlinge kommuns vision är inte passiv - den är aktiv och gestaltande.</strong></p>
+                    <p style="margin-top: 1rem;">Visionen antogs 2023 och markerar ett skifte från förvaltning till formning. 
+                    Det handlar inte om att vänta på framtiden, utan om att aktivt skapa den.</p>
+                    <p style="margin-top: 1rem;">Som controller bidrar du till att forma framtiden genom:</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Strategisk ekonomistyrning som möjliggör innovation</li>
+                        <li>Nyckeltal som visar vägen framåt, inte bara bakåt</li>
+                        <li>Analys som skapar handlingsutrymme för utveckling</li>
+                        <li>Dialog som bygger förtroende och öppenhet</li>
+                    </ul>
+                `
+            },
+            focus1: {
+                title: '👶 Möjliggöra de bästa förutsättningarna för barn och unga',
+                content: `
+                    <p><strong>Fokusområde 1: Investera i framtiden genom att ge barn och unga en stabil grund.</strong></p>
+                    <p style="margin-top: 1rem;">Detta fokusområde genomsyrar Sektor Arbetsliv och fritid där controller-tjänsten finns:</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Gymnasie- och vuxenutbildning</li>
+                        <li>Fritidsgårdar och anläggningar</li>
+                        <li>Kulturskola</li>
+                        <li>Individ- och familjeomsorg</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Ett av kommunens 7 mål är att 95% av elever i årskurs 9 ska uppnå gymnasiebehörighet - 
+                    detta kräver intelligent resursallokering och uppföljning.</p>
+                `
+            },
+            focus2: {
+                title: '💡 Skapa en smartare kommun genom samskapande och innovativa lösningar',
+                content: `
+                    <p><strong>Fokusområde 2: Innovation genom samverkan med invånarna.</strong></p>
+                    <p style="margin-top: 1rem;">Detta handlar om att:</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Aktivt involvera medborgarna i lösningar</li>
+                        <li>Använda digitalisering för att skapa påtaglig effekt</li>
+                        <li>Främja självständighet och delaktighet genom hela livet</li>
+                        <li>Experimentera med nya arbetssätt</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Som controller kan du bidra genom att utveckla uppföljningsmetoder 
+                    som mäter effekt snarare än bara kostnad - kvalitet framför kvantitet.</p>
+                `
+            },
+            focus3: {
+                title: '🌱 Välja hållbara lösningar för god tillväxt och bättre klimat',
+                content: `
+                    <p><strong>Fokusområde 3: Balansera tillväxt med miljö- och klimathänsyn.</strong></p>
+                    <p style="margin-top: 1rem;">Kävlinge kommun växer kontinuerligt - drygt 32 500 invånare och växande. 
+                    Detta skapar både möjligheter och utmaningar:</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Ökade skatteintäkter från fler invånare</li>
+                        <li>Behov av utbyggd verksamhet</li>
+                        <li>Lokalbehov som måste planeras hållbart</li>
+                        <li>Miljömål som ska nås samtidigt</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">En viktig del av controller-rollen är att leda analys- och processarbete 
+                    kopplat till sektorns lokalbehov - här möts ekonomi, verksamhet och hållbarhet.</p>
+                `
+            },
+            focus4: {
+                title: '🛡️ Genom samverkan skapa en tryggare och säkrare kommun',
+                content: `
+                    <p><strong>Fokusområde 4: Trygghet genom samarbete och tillhörighet.</strong></p>
+                    <p style="margin-top: 1rem;">Detta fokusområde är särskilt relevant för Sektor Arbetsliv och fritid:</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Individ- och familjeomsorg (IFO) - barn i utsatta situationer</li>
+                        <li>Fritidsgårdar - förebyggande arbete mot riskbeteende</li>
+                        <li>Flyktingmottagande - integration och tillhörighet</li>
+                        <li>Arbetsmarknadsinsatser - trygghet genom arbete</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Ett av kommunens 7 mål är att färre barn och unga ska uppvisa riskbeteende 
+                    eller lida av psykisk ohälsa - detta kräver intelligenta investeringar och uppföljning.</p>
+                `
+            },
+            malstyrning: {
+                title: '📊 Målstyrning - Från vision till handling',
+                content: `
+                    <p><strong>7 kommunövergripande mål ger riktning och fokus.</strong></p>
+                    <p style="margin-top: 1rem;">Målen spänner över:</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Attraktivitet som bostadsort</li>
+                        <li>Trygga och välskötta offentliga miljöer</li>
+                        <li>Företagsklimat (topp 5 i Skåne)</li>
+                        <li>95% gymnasiebehörighet i åk 9</li>
+                        <li>Minskat riskbeteende och psykisk ohälsa hos unga</li>
+                        <li>Attraktivare omsorgsyrken</li>
+                        <li>Innovation och hållbarhet</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Som controller är din uppgift att hjälpa chefer och politiker 
+                    förstå kopplingen mellan resursinsatser och måluppfyllelse - att göra det abstrakta konkret.</p>
+                `
+            },
+            forutsattningar: {
+                title: '🏗️ Förutsättningar - Grunden för framgång',
+                content: `
+                    <p><strong>Tre kritiska förutsättningar för att nå målen:</strong></p>
+                    
+                    <h4 style="margin-top: 1rem;">💰 Sunda finanser</h4>
+                    <p>Kävlinge kommun har en stabil ekonomi och stark finansiell ställning. 
+                    Budget: ca 1,9 miljarder kronor. Sektor Arbetsliv och fritid: ca 430 miljoner kronor (23%).</p>
+                    
+                    <h4 style="margin-top: 1rem;">👥 Attraktiv arbetsgivare</h4>
+                    <p>Ca 2 000 anställda ska känna sig 100% välkomna. Ett av målen är att öka attraktiviteten 
+                    inom omsorgsyrket. Värdeord: Öppenhet, Engagemang, Utveckling.</p>
+                    
+                    <h4 style="margin-top: 1rem;">🌍 Hållbarhet</h4>
+                    <p>Ekonomisk, social OCH miljömässig hållbarhet. Utveckling som inte äventyrar framtida generationer.</p>
+                    
+                    <p style="margin-top: 1rem;"><strong>Som controller arbetar du i korsningen mellan alla tre!</strong></p>
+                `
+            },
+            kvalitet: {
+                title: '⭐ Kvalitetsledning - Säkra och utveckla',
+                content: `
+                    <p><strong>Kvalitetsledning handlar om att både säkra grunduppdraget OCH kontinuerligt utveckla.</strong></p>
+                    <p style="margin-top: 1rem;">Kävlinge kommun ligger bra till och har ett välkänt bra kvalitetsarbete. 
+                    Detta innebär:</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Kvalitetssäkra att verksamheten fullföljer grunduppdraget</li>
+                        <li>Löpande utveckla och förbättra tjänster och service</li>
+                        <li>Systematisk uppföljning och lärande</li>
+                        <li>Evidensbaserade metoder och arbetssätt</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Som controller bidrar du till kvalitetsledning genom:</p>
+                    <ul style="margin: 1rem 0; padding-left: 2rem;">
+                        <li>Utveckling av relevanta nyckeltal och uppföljningsmetoder</li>
+                        <li>Analys som visar både effektivitet OCH effekt</li>
+                        <li>Stöd i planerings- och uppföljningsprocesser</li>
+                    </ul>
+                `
+            },
+            kultur: {
+                title: '❤️ Organisationskultur - Hjärtat i verksamheten',
+                content: `
+                    <p><strong>"Tillsammans bär vi vår gemensamma lagtröja och skapar det som är VI. Det börjar hos dig."</strong></p>
+                    
+                    <h4 style="margin-top: 1rem;">🔓 Öppenhet</h4>
+                    <ul style="margin: 0.5rem 0; padding-left: 2rem;">
+                        <li>Förtroende - Vi delar med oss och känner tillit</li>
+                        <li>Inkluderande - Vi är välkomnande och visar hänsyn</li>
+                        <li>Lyhörda - Vi lyssnar, svarar och agerar</li>
+                    </ul>
+                    
+                    <h4 style="margin-top: 1rem;">🔥 Engagemang</h4>
+                    <ul style="margin: 0.5rem 0; padding-left: 2rem;">
+                        <li>Intresserade - Vi är närvarande, bryr oss och visar omtanke</li>
+                        <li>Handlingskraftiga - Vi är beslutsamma och entusiastiska</li>
+                        <li>Ansvarstagande - Vi bidrar till helheten, tar initiativ</li>
+                    </ul>
+                    
+                    <h4 style="margin-top: 1rem;">🚀 Utveckling</h4>
+                    <ul style="margin: 0.5rem 0; padding-left: 2rem;">
+                        <li>Nyfikna - Vi lär av varandra och är öppna för omvärlden</li>
+                        <li>Resultatinriktade - Vi är fokuserade och arbetar mot mål</li>
+                        <li>Modiga - Vi är kreativa och vågar tänka nytt</li>
+                    </ul>
+                    
+                    <p style="margin-top: 1rem;"><strong>Detta är inte bara ord - det är ett levande arbetssätt som 
+                    genomsyrar hela organisationen, från värdegrundsledarutbildningar till dagliga interaktioner.</strong></p>
+                `
+            }
+        };
+
+        function showModal(key) {
+            const modal = document.getElementById('infoModal');
+            const content = document.getElementById('modalContent');
+            const data = modalData[key];
+            
+            if (data) {
+                content.innerHTML = `<h2>${data.title}</h2>${data.content}`;
+                modal.classList.add('show');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').classList.remove('show');
+        }
+
+        // Stäng modal vid klick utanför innehållet
+        document.getElementById('infoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Stäng modal med Escape-tangenten
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Animera in element när sidan laddas
+        window.addEventListener('load', function() {
+            const elements = document.querySelectorAll('.focus-area, .model-element');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    el.style.transition = 'all 0.5s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'scale(1)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
