@@ -26,6 +26,35 @@
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             overflow: hidden;
+            position: relative;
+        }
+
+        /* TILLBAKA-KNAPP */
+        .back-to-presentation {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1a5a3a;
+            border: 2px solid #1a5a3a;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .back-to-presentation:hover {
+            background: #1a5a3a;
+            color: white;
+            transform: scale(1.05);
         }
 
         header {
@@ -152,6 +181,15 @@
         .explanation p {
             margin-bottom: 0.5rem;
             color: #333;
+        }
+
+        .explanation a {
+            color: #2196F3;
+            text-decoration: underline;
+        }
+
+        .explanation a:hover {
+            color: #1976D2;
         }
 
         .reference {
@@ -292,6 +330,13 @@
                 padding: 1rem;
             }
 
+            .back-to-presentation {
+                top: 0.5rem;
+                right: 0.5rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
             header h1 {
                 font-size: 1.5rem;
             }
@@ -307,6 +352,11 @@
     </style>
 </head>
 <body>
+    <!-- TILLBAKA-KNAPP -->
+    <a href="index.html" class="back-to-presentation" title="Tillbaka till presentationen">
+        ← Presentation
+    </a>
+
     <div class="container">
         <header>
             <h1>🏛️ Quiz: Kävlinge kommun</h1>
@@ -322,7 +372,7 @@
                 <li>📝 <strong>10 frågor</strong> med 4 svarsalternativ vardera</li>
                 <li>🎯 Kluriga frågor för både sökande och anställda</li>
                 <li>💡 Detaljerade förklaringar till varje svar</li>
-                <li>📚 Referenser i Harvard-stil</li>
+                <li>📚 Referenser i Harvard-stil med klickbara länkar</li>
                 <li>⏱️ Ta dig tid att tänka efter!</li>
             </ul>
 
@@ -361,156 +411,156 @@
     </div>
 
     <script>
-        // UPPDATERING 2026-01-12: Quiz om Kävlinge kommun - Sektor Arbetsliv och fritid
+        // UPPDATERING 2026-01-12: Quiz om Kävlinge kommun - baserat på PM från People Impact
         const quizData = [
             {
-                question: "Hur många medarbetare arbetar inom Sektor Arbetsliv och fritid i Kävlinge kommun?",
+                question: "Vilken är Kävlinge kommuns nya vision som togs fram 2023?",
                 options: [
-                    "Cirka 100 medarbetare",
-                    "Cirka 150 medarbetare",
-                    "Cirka 200 medarbetare",
-                    "Cirka 75 medarbetare"
+                    "Vi skapar framtiden tillsammans",
+                    "Vi formar framtiden",
+                    "En kommun i världsklass",
+                    "Framåt tillsammans"
                 ],
                 correct: 1,
                 explanation: {
-                    correct: "Rätt! Sektor Arbetsliv och fritid består av cirka 150 engagerade medarbetare. Detta är en betydande personalstyrka som täcker in många olika verksamhetsområden – från bibliotek och kulturskola till socialtjänst och vuxenutbildning.",
-                    incorrect: "Fel svar. Enligt Kävlinge kommuns jobbportal består Sektor Arbetsliv och fritid av cirka 150 engagerade medarbetare. Detta kan verka som en oväntat stor siffra för den som är ny på kommunen, men sektorn täcker in många olika verksamhetsområden som kräver bred kompetens.",
-                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                    correct: "Rätt! Under 2023 togs visionen 'Vi formar framtiden' fram. Detta är en framåtblickande vision som speglar kommunens ambition att vara aktiv och gestaltande, inte bara förvaltande. För en controller är detta viktigt att förstå – det handlar om att bidra till utveckling, inte bara rapportera historiska siffror.",
+                    incorrect: "Fel. Kävlinge kommuns vision sedan 2023 är 'Vi formar framtiden'. Detta är en tydlig markering av att kommunen vill vara proaktiv och utvecklingsinriktad. Som controller förväntas du bidra till att forma framtiden genom strategisk ekonomistyrning och verksamhetsutveckling, vilket ligger i linje med visionen.",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. People Impact I Sverige AB, s. 2."
                 }
             },
             {
-                question: "Vilken av följande verksamheter ingår INTE i Sektor Arbetsliv och fritid?",
+                question: "Vilken är Sektor Arbetsliv och fritids årliga omsättning (2024)?",
                 options: [
-                    "Kulturskolan",
-                    "Gymnasie- och vuxenutbildning",
-                    "Räddningstjänsten",
-                    "Familjebehandling/stödboende"
+                    "Cirka 250 miljoner kronor",
+                    "Cirka 430 miljoner kronor",
+                    "Cirka 650 miljoner kronor",
+                    "Cirka 1,9 miljarder kronor"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Korrekt! Sektor Arbetsliv och fritid har en omsättning på cirka 430 miljoner kronor (2024). Detta är en betydande budget som motsvarar ungefär 23% av kommunens totala budget på 1,9 miljarder. Som controller ansvarar du för ekonomistyrningen av denna omfattande verksamhet som sträcker sig från gymnasieutbildning till socialtjänst.",
+                    incorrect: "Fel. Sektorns omsättning är cirka 430 miljoner kronor (2024). Detta är inte hela kommunens budget (1,9 miljarder), utan specifikt för Sektor Arbetsliv och fritid. Som controller behöver du ha koll på dessa siffror – de är grunden för budget, prognos och uppföljning. 430 mnkr är en betydande ekonomi att styra!",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. People Impact I Sverige AB, s. 4."
+                }
+            },
+            {
+                question: "Vilka är Kävlinge kommuns tre värdeord?",
+                options: [
+                    "Samverkan, Kvalitet, Effektivitet",
+                    "Öppenhet, Engagemang, Utveckling",
+                    "Respekt, Ansvar, Professionalitet",
+                    "Innovation, Hållbarhet, Trygghet"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Helt rätt! Kävlinge kommuns tre värdeord är Öppenhet, Engagemang och Utveckling. Varje värdeord har tre underkategorier: Öppenhet (förtroende, inkluderande, lyhörda), Engagemang (intresserade, handlingskraftiga, ansvarstagande), och Utveckling (nyfikna, resultatinriktade, modiga). Som controller förväntas du leva dessa värden i ditt arbete.",
+                    incorrect: "Fel. De tre värdeorden är Öppenhet, Engagemang och Utveckling. Dessa är inte bara ord på väggen – de är en del av organisationskulturen och uttrycks som 'Tillsammans bär vi vår gemensamma lagtröja och skapar det som är VI. Det börjar hos dig.' Som controller är det viktigt att förstå och leva dessa värden i ekonomistyrningen.",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. People Impact I Sverige AB, s. 3. Se även <a href='https://www.kavlinge.se' target='_blank'>www.kavlinge.se</a>"
+                }
+            },
+            {
+                question: "Hur många kommunövergripande mål har Kävlinge kommun?",
+                options: [
+                    "4 mål",
+                    "5 mål",
+                    "7 mål",
+                    "10 mål"
                 ],
                 correct: 2,
                 explanation: {
-                    correct: "Korrekt! Räddningstjänsten ingår inte i Sektor Arbetsliv och fritid. Räddningstjänsten är vanligtvis en separat verksamhet i kommunen eller ingår i en räddningstjänstförbund. Sektor Arbetsliv och fritid fokuserar på verksamheter som bibliotek, kulturskola, fritidsgårdar, vuxenutbildning och vissa delar av socialtjänsten.",
-                    incorrect: "Fel. Räddningstjänsten ingår inte i Sektor Arbetsliv och fritid. Sektorn omfattar istället verksamheter som arbete och integration, bibliotek, familjebehandling/stödboende, fritidsgårdar/anläggningar, gymnasie- och vuxenutbildning, kulturskolan, mottagning/barnutredare och vuxenenhet. Detta är en kluring fråga eftersom räddningstjänst kan verka som en fritidsverksamhet, men den är en helt separat funktion i kommunen.",
-                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                    correct: "Korrekt! Kävlinge kommun har 7 kommunövergripande mål. Dessa inkluderar bland annat att 95% av eleverna i årskurs 9 ska uppnå gymnasiebehörighet, att kommunen ska vara topp 5 i Skåne i företagsklimat, och att färre barn och unga ska uppvisa riskbeteende. Som controller behöver du förstå hur dessa mål påverkar sektorns verksamhet och ekonomi.",
+                    incorrect: "Fel. Kommunen har 7 kommunövergripande mål. Dessa sträcker sig från utbildning (95% gymnasiebehörighet) till företagsklimat (topp 5 i Skåne) och barns hälsa. För en controller är detta viktigt eftersom målen driver resursfördelning och prioriteringar. Du förväntas kunna koppla ekonomiska uppföljningar till måluppfyllelse.",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. People Impact I Sverige AB, s. 2."
                 }
             },
             {
-                question: "Vilka tre lagar är särskilt viktiga för Sektor Arbetsliv och fritids arbete?",
+                question: "Vem rapporterar controllern till organisatoriskt?",
                 options: [
-                    "Kommunallagen, Plan- och bygglagen, Miljöbalken",
-                    "Bibliotekslagen, Skollagen, Socialtjänstlagen",
-                    "Arbetsmiljölagen, LAS, Diskrimineringslagen",
-                    "Förvaltningslagen, Offentlighets- och sekretesslagen, Arkivlagen"
+                    "Sektorchefen för Arbetsliv och fritid",
+                    "Kommunens ekonomichef",
+                    "Kommundirektören",
+                    "Arbetsliv- och fritidsnämnden"
                 ],
                 correct: 1,
                 explanation: {
-                    correct: "Helt rätt! Sektorns arbete utgår från krav och mål i bibliotekslagen, skollagen och socialtjänstlagen. Detta speglar verksamheternas olika karaktärer: bibliotekslagen styr biblioteksverksamheten, skollagen reglerar gymnasie- och vuxenutbildning, och socialtjänstlagen är ramverket för familjebehandling och barn- och ungdomsarbete. Som controller behöver man förstå hur dessa lagar påverkar verksamheternas ekonomi och måluppfyllelse.",
-                    incorrect: "Fel. De tre centrala lagarna är bibliotekslagen, skollagen och socialtjänstlagen. Även om de andra lagarna du valde också är viktiga i kommunal verksamhet, är det just dessa tre som är grunden för Sektor Arbetsliv och fritids uppdrag. Detta är viktigt att veta som controller eftersom lagkraven påverkar både budget, resursbehov och hur verksamheten kan styras ekonomiskt.",
-                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                    correct: "Helt rätt! Controllern tillhör organisatoriskt ekonomiavdelningen (central funktion) och rapporterar till kommunens ekonomichef. SAMTIDIGT arbetar controllern nära sektorchefen och ingår i Sektor Arbetsliv och fritids ledningsgrupp. Detta är en matriseorganisation där du har dubbla lojaliteter – både till central ekonomifunktion och till sektorn du stödjer.",
+                    incorrect: "Fel. Controllern rapporterar organisatoriskt till kommunens ekonomichef, även om hen arbetar väldigt nära sektorchefen för Arbetsliv och fritid. Detta är en typisk matriseorganisation i kommuner – du tillhör den centrala ekonomifunktionen men är fysiskt och operativt nära sektorn. Du ingår också i sektorns ledningsgrupp. Det kräver god balansgång!",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. People Impact I Sverige AB, s. 4."
                 }
             },
             {
-                question: "Vad är ett av sektorns huvudsyften enligt bibliotekslagen?",
+                question: "Vad är controllerns FRÄMSTA stödsystem enligt PM:et?",
                 options: [
-                    "Att öka kommunens skatteintäkter genom fler invånare",
-                    "Att verka för det demokratiska samhällets utveckling genom kunskapsförmedling och fri åsiktsbildning",
-                    "Att digitalisera alla kommunala tjänster",
-                    "Att främja turism och besöksnäring i kommunen"
-                ],
-                correct: 1,
-                explanation: {
-                    correct: "Utmärkt! Enligt bibliotekslagen ska biblioteksverksamheten verka för det demokratiska samhällets utveckling genom att bidra till kunskapsförmedling och fri åsiktsbildning. Detta är en grundläggande demokratisk funktion som går längre än bara att låna ut böcker – det handlar om tillgång till information, bildning och en mötesplats för alla medborgare oavsett bakgrund.",
-                    incorrect: "Inte rätt. Bibliotekslagen föreskriver att biblioteksverksamheten ska verka för det demokratiska samhällets utveckling genom att bidra till kunskapsförmedling och fri åsiktsbildning. Detta är en kärnuppgift som går djupare än praktiska funktioner – det är en demokratisk rättighet. Som controller i sektorn är det viktigt att förstå detta uppdrag eftersom det påverkar hur resurser ska fördelas och vilka verksamheter som prioriteras.",
-                    reference: "Bibliotekslag (2013:801). Stockholm: Kulturdepartementet. Tillgänglig: https://www.riksdagen.se/sv/dokument-lagar/dokument/svensk-forfattningssamling/bibliotekslag-2013801_sfs-2013-801 [Hämtad 12 januari 2026]."
-                }
-            },
-            {
-                question: "Vilken kompetens är MEST central för en controller i Sektor Arbetsliv och fritid, utöver traditionella ekonomiska färdigheter?",
-                options: [
-                    "Fördjupad kunskap om juridik och rättsprocesser",
-                    "Förståelse för verksamheternas olika karaktärer och lagstiftning inom utbildning, kultur och socialtjänst",
-                    "Avancerad IT-utveckling och programmering",
-                    "Marknadsföring och PR-kompetens"
-                ],
-                correct: 1,
-                explanation: {
-                    correct: "Helt rätt! Som controller i en så bred sektor behöver man verkligen förstå verksamheternas olika karaktärer och den lagstiftning som styr dem. Det räcker inte med ekonomisk kompetens – man måste förstå skillnaderna mellan skollagen, socialtjänstlagen och bibliotekslagen, samt hur dessa påverkar ekonomistyrning, budgetprocesser och uppföljning. Detta är verksamhetsnära ekonomistyrning i praktiken.",
-                    incorrect: "Fel. Det mest centrala är förståelse för verksamheternas olika karaktärer och lagstiftning. Sektorn omfattar allt från utbildning och kultur till socialtjänst – varje område har sina egna lagar, krav och ekonomiska förutsättningar. En controller behöver förstå dessa skillnader för att kunna ge rätt ekonomiskt stöd. Hypergene och andra system är verktyg, men utan verksamhetsförståelse blir de mindre effektiva.",
-                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. Intern handledning. Kävlinge: Kävlinge kommun."
-                }
-            },
-            {
-                question: "Vad är sektorns särskilda fokusområde när det gäller kävlingebor med arbetsförmåga?",
-                options: [
-                    "Att de ska få tillgång till fritidsaktiviteter",
-                    "Att de ska bli självförsörjande",
-                    "Att de ska delta i kulturskolan",
-                    "Att de ska använda biblioteket regelbundet"
-                ],
-                correct: 1,
-                explanation: {
-                    correct: "Korrekt! Verksamheterna ska särskilt fokusera på insatser för att kävlingebor med arbetsförmåga blir självförsörjande. Detta är en tydlig målsättning som speglar kommunens ansvar för arbetsmarknadsinsatser och integration. Det handlar om att skapa förutsättningar för människor att komma i arbete och kunna försörja sig själva, vilket är både en ekonomisk och en social fråga.",
-                    incorrect: "Fel. Det korrekta svaret är att kävlingebor med arbetsförmåga ska bli självförsörjande. Detta är ett centralt mål för sektorns arbetsmarknads- och integrationsinsatser. Som controller är detta viktigt att förstå eftersom investeringar i dessa verksamheter inte bara är kostnader – de är insatser som potentiellt minskar kommunens framtida sociala utgifter och ökar skatteintäkterna när fler kommer i arbete.",
-                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
-                }
-            },
-            {
-                question: "Vilket ekonomisystem används som främsta stödsystem för controllern i Kävlinge kommun?",
-                options: [
-                    "SAP",
+                    "Excel och Power BI",
                     "Hypergene",
                     "Raindance",
-                    "Excel och Access"
+                    "QlikSense"
                 ],
                 correct: 1,
                 explanation: {
-                    correct: "Riktigt! Hypergene är controllerns främsta stödsystem i Kävlinge kommun. Hypergene är ett modernt BI- och planeringsverktyg som möjliggör avancerad ekonomisk planering, budgetering, prognoser och uppföljning. Som controller förväntas du inte bara kunna använda systemet utan också kunna utveckla det – skapa nya rapporter, dashboards och analyser som stödjer verksamheternas beslutsfattande.",
-                    incorrect: "Fel. Hypergene är det primära stödsystemet. Detta är ett viktigt system att behärska eftersom det går längre än traditionell ekonomiredovisning – det är ett verktyg för strategisk ekonomistyrning. Raindance kan vara det underliggande ekonomisystemet, men Hypergene är verktyget för analys, planering och uppföljning. En erfaren Hypergene-användare som också kan utveckla systemet är mycket värdefull för kommunen.",
-                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. Intern handledning. Kävlinge: Kävlinge kommun."
+                    correct: "Perfekt! Hypergene är controllerns främsta stödsystem enligt PM:et, där det står: '⭐ Hypergene är controllerns främsta stödsystem'. Viktigt är att i uppdraget ingår att UTVECKLA Hypergene så det blir ett så bra stöd som möjligt till sektorn. Du förväntas alltså inte bara använda systemet, utan aktivt utveckla och förbättra det.",
+                    incorrect: "Fel. Hypergene är det främsta stödsystemet, vilket särskilt framhävs i PM:et med en stjärna. Viktigt att notera: I uppdraget ingår att utveckla Hypergene så det blir ett så bra stöd som möjligt. Det räcker alltså inte att bara kunna använda systemet – du förväntas kunna utveckla rapporter, dashboards och funktionalitet för att stödja verksamheten bättre.",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. People Impact I Sverige AB, s. 5."
                 }
             },
             {
-                question: "Vad kännetecknar arbetsplatskulturen i Kävlinge kommun enligt medarbetarintervjuer?",
+                question: "Vilket av dessa är INTE en av de fyra fokusområdena kopplade till kommunens vision?",
                 options: [
-                    "Hög personalomsättning och stress",
-                    "Konkret arbete med värdegrunden och idérikedom med olika projekt",
-                    "Strikt hierarkisk struktur",
-                    "Fokus enbart på regelefterlevnad"
+                    "Möjliggöra de bästa förutsättningarna för barn och unga",
+                    "Skapa en smartare kommun genom samskapande och innovativa lösningar",
+                    "Öka kommunens skatteintäkter genom befolkningstillväxt",
+                    "Genom samverkan skapa en tryggare och säkrare kommun"
                 ],
-                correct: 1,
+                correct: 2,
                 explanation: {
-                    correct: "Precis! Medarbetare beskriver Kävlinge som en kommun där man 'arbetar med värdegrunden' – inte bara som ledord utan som konkret handling. Kommunen beskrivs också som idérik med olika projekt, nästan som en 'entreprenörskommun'. Detta är en viktig kulturaspekt för den som söker sig till kommunen – det handlar om utveckling, inte bara förvaltning.",
-                    incorrect: "Fel. Kävlinge kommun beskrivs av medarbetare som en plats där man konkret arbetar med värdegrunden och är idérik med olika projekt. En medarbetare sa 'Wow! här arbetar man med värdegrunden' och beskrev kommunen som en form av 'entreprenörskommun'. Detta är en kultur som passar den som vill utveckla och förbättra, inte bara administrera. Som controller betyder detta att du förväntas vara med och driva utveckling, inte bara rapportera siffror.",
-                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                    correct: "Korrekt! 'Öka kommunens skatteintäkter genom befolkningstillväxt' är INTE ett av de fyra fokusområdena. De faktiska fokusområdena är: 1) Möjliggöra de bästa förutsättningarna för barn och unga, 2) Skapa en smartare kommun genom samskapande och innovativa lösningar, 3) Välja hållbara lösningar för god tillväxt och bättre klimat, 4) Genom samverkan skapa en tryggare och säkrare kommun.",
+                    incorrect: "Fel. De fyra fokusområdena är: 1) Barn och ungas förutsättningar, 2) Smartare kommun genom samskapande och innovation, 3) Hållbara lösningar för tillväxt och klimat, 4) Tryggare och säkrare kommun genom samverkan. Ingen av dessa handlar primärt om skatteintäkter – istället fokuseras på medborgarperspektivet, innovation, hållbarhet och trygghet.",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. People Impact I Sverige AB, s. 2-3."
                 }
             },
             {
-                question: "Vad är en viktig utmaning som identifierats för Kävlinge kommun enligt medarbetare?",
+                question: "Vilken motivationsfaktor för rollen betonas som viktigast enligt kravprofilen?",
                 options: [
-                    "Brist på budget och resurser",
-                    "Samverkan mellan olika sektorer som arbetar med samma familjer",
-                    "För få medborgare",
-                    "Dålig IT-infrastruktur"
+                    "Motiveras av hög lön och förmåner",
+                    "Motiveras av sektorns bredd och behovet av relevanta nyckeltal för olika verksamheter",
+                    "Motiveras av att arbeta självständigt utan störningar",
+                    "Motiveras av att fokusera enbart på ekonomisk rapportering"
                 ],
                 correct: 1,
                 explanation: {
-                    correct: "Korrekt! En medarbetare identifierade samverkan som en utmaning: 'Det spretar lite i Kävlinge kommun. Det är olika sektorer och ibland jobbar flera av dem med samma familj fast med olika glasögon.' Detta är en viktig insikt – kommunen har bra verksamheter men behöver förbättra hur olika delar samarbetar. Som controller kan du bidra till bättre samverkan genom gemensamma ekonomiska uppföljningssystem och processer.",
-                    incorrect: "Fel. Den identifierade utmaningen är samverkan mellan olika sektorer. Som en medarbetare uttryckte det: olika sektorer arbetar ibland med samma familj men med olika perspektiv, vilket gör att kommunen kan upplevas som 'spretig' för medborgaren. Detta är en viktig utmaning för en controller att förstå – ekonomistyrning handlar inte bara om siffror utan om att skapa system som underlättar samverkan och helhetssyn.",
-                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                    correct: "Utmärkt! Enligt PM:et är den första och viktigaste motivationsfaktorn att man 'motiveras av sektorns bredd och behov av att hitta för verksamheterna relevanta nyckeltal och uppföljningsmetoder för att visa på övergripande resultat'. Detta är kärnan i rollen – att förstå och mäta helt olika verksamheter från kulturskola till socialtjänst.",
+                    incorrect: "Fel. Kravprofilen betonar att man måste motiveras av sektorns bredd och utmaningen att hitta relevanta nyckeltal för helt olika verksamheter. Detta är en controller-roll som kräver genuint intresse för verksamhet, inte bara för siffror. Du behöver älska utmaningen att hitta rätt mått för allt från bibliotek till IFO – det kräver både kreativitet och analytisk förmåga.",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. People Impact I Sverige AB, s. 6."
                 }
             },
             {
-                question: "Vad är controllerns roll i Sektor Arbetsliv och fritids ledningsgrupp?",
+                question: "Vilken kompetens beskrivs som 'förmågan att se de tydliga samspelen mellan ekonomi och verksamhet'?",
                 options: [
-                    "Endast att rapportera ekonomiska utfall",
-                    "Att vara en strategisk partner som kombinerar ekonomisk expertis med verksamhetsförståelse och systemutveckling",
-                    "Att granska och kontrollera verksamhetschefernas beslut",
-                    "Att hantera löneadministration"
+                    "Ansvarstagande och självgående",
+                    "Helhetsperspektiv",
+                    "Kommunikativ",
+                    "Utvecklingsinriktad"
                 ],
                 correct: 1,
                 explanation: {
-                    correct: "Utmärkt! Controllern förväntas vara en strategisk partner i ledningsgruppen – inte bara en 'sifferperson'. Detta innebär att kombinera ekonomisk expertis med djup verksamhetsförståelse, utveckla stödsystem som Hypergene, och bidra till strategiska diskussioner. Det är en aktiv roll där du förväntas utmana, analysera och föreslå förbättringar baserat på både ekonomiska och verksamhetsmässiga grunder.",
-                    incorrect: "Fel. Controllern ska vara en strategisk partner i ledningsgruppen. Detta är mycket mer än att bara rapportera siffror – det handlar om att vara verksamhetsnära, förstå utmaningarna i olika delar av sektorn (från kulturskola till socialtjänst), och kunna översätta mellan ekonomi och verksamhet. Det kräver både analytisk skärpa och pedagogisk förmåga. En modern controller är en katalysator för verksamhetsutveckling, inte bara en granskare.",
-                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. Intern handledning. Kävlinge: Kävlinge kommun."
+                    correct: "Perfekt! 'Helhetsperspektiv' definieras som 'förmågan att se de tydliga samspelen mellan ekonomi och verksamhet och utgöra en naturlig brygga. Kan röra sig mellan strategiska och operativa perspektiven.' Detta är en kärnkompetens för modern verksamhetsnära ekonomistyrning – du är bryggan mellan ekonomi och verksamhet.",
+                    incorrect: "Fel. Det är 'Helhetsperspektiv' som beskrivs så här. Detta är en avgörande kompetens: att förstå samspelet mellan ekonomi och verksamhet, att kunna växla mellan strategisk nivå och operativ vardag, och att vara den naturliga bryggan mellan ekonomichef och sektorchef. Utan detta perspektiv blir man bara en rapportör, inte en strategisk partner.",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. People Impact I Sverige AB, s. 6."
+                }
+            },
+            {
+                question: "Hur många invånare har Kävlinge kommun?",
+                options: [
+                    "Drygt 22 500",
+                    "Drygt 27 500",
+                    "Drygt 32 500",
+                    "Drygt 42 500"
+                ],
+                correct: 2,
+                explanation: {
+                    correct: "Korrekt! Kävlinge kommun har drygt 32 500 invånare. Kommunen har en kontinuerlig befolkningstillväxt där planlagda områden byggs ut. Med en budget på 1,9 miljarder kronor och 2 000 anställda betjänar kommunen denna växande befolkning. Som controller behöver du förstå demografiska trender och hur de påverkar verksamhet och ekonomi.",
+                    incorrect: "Fel. Kommunen har drygt 32 500 invånare. Detta är viktigt att veta som controller eftersom invånarantalet direkt påverkar resursbehov, statsbidraget och många nyckeltal (kostnad per invånare, etc.). Kommunen växer kontinuerligt, vilket innebär både möjligheter (fler skattebetalare) och utmaningar (behov av utökad verksamhet).",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. People Impact I Sverige AB, s. 1. Se även <a href='https://www.kavlinge.se' target='_blank'>www.kavlinge.se</a>"
                 }
             }
         ];
@@ -653,15 +703,15 @@
             
             let message = '';
             if (percentage === 100) {
-                message = '🏆 Perfekt! Du har utmärkt kunskap om Kävlinge kommun och Sektor Arbetsliv och fritid!';
+                message = '🏆 Perfekt! Du har utmärkt kunskap om Kävlinge kommun och controller-tjänsten!';
             } else if (percentage >= 80) {
                 message = '🌟 Mycket bra! Du har god förståelse för sektorn och controller-rollen.';
             } else if (percentage >= 60) {
                 message = '👍 Bra jobbat! Du har grundläggande kunskap, men det finns mer att lära.';
             } else if (percentage >= 40) {
-                message = '📚 Du har viss kunskap, men rekommenderas att läsa mer om sektorn.';
+                message = '📚 Du har viss kunskap, men rekommenderas att läsa PM:et noggrannare.';
             } else {
-                message = '💪 Fortsätt lära! Granska svaren och fördjupa dig i materialet.';
+                message = '💪 Fortsätt lära! Granska svaren och fördjupa dig i PM-dokumentet.';
             }
             
             document.getElementById('resultMessage').textContent = message;
