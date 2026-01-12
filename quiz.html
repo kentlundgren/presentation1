@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Kävlinge kommun - Sektor Arbetsliv och fritid</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a5a3a 0%, #2d7a52 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a5a3a 0%, #2d7a52 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .quiz-content {
+            padding: 2rem;
+        }
+
+        .question-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .question-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-number {
+            color: #1a5a3a;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .option:hover {
+            background: #e8f5e9;
+            border-color: #2d7a52;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: #c4a35a;
+            border-color: #c4a35a;
+            color: white;
+        }
+
+        .option.correct {
+            background: #4caf50;
+            border-color: #4caf50;
+            color: white;
+        }
+
+        .option.incorrect {
+            background: #f44336;
+            border-color: #f44336;
+            color: white;
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            font-weight: 700;
+            font-size: 1.2rem;
+            min-width: 30px;
+        }
+
+        .explanation {
+            display: none;
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 5px;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .explanation h4 {
+            color: #2196F3;
+            margin-bottom: 0.75rem;
+        }
+
+        .explanation p {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .reference {
+            font-size: 0.85rem;
+            font-style: italic;
+            color: #666;
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #ddd;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #eee;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #1a5a3a;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2d7a52;
+            transform: scale(1.05);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #c4a35a;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #b89350;
+            transform: scale(1.05);
+        }
+
+        .result-container {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .result-container.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-score {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #1a5a3a;
+            margin: 1rem 0;
+        }
+
+        .result-message {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .score-bar {
+            background: #e0e0e0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1a5a3a 0%, #2d7a52 100%);
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .progress {
+            text-align: center;
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .intro-screen {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .intro-screen h2 {
+            color: #1a5a3a;
+            margin-bottom: 1rem;
+        }
+
+        .intro-screen p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .intro-screen ul {
+            text-align: left;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            background: #f8f9fa;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+        }
+
+        .intro-screen li {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1.1rem;
+            }
+
+            .result-score {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏛️ Quiz: Kävlinge kommun</h1>
+            <p>Sektor Arbetsliv och fritid - Controller-tjänsten</p>
+        </header>
+
+        <!-- INTRO SCREEN -->
+        <div id="introScreen" class="intro-screen">
+            <h2>Välkommen till quizet!</h2>
+            <p>Detta quiz testar din kunskap om Sektor Arbetsliv och fritid i Kävlinge kommun samt controller-tjänsten.</p>
+            
+            <ul>
+                <li>📝 <strong>10 frågor</strong> med 4 svarsalternativ vardera</li>
+                <li>🎯 Kluriga frågor för både sökande och anställda</li>
+                <li>💡 Detaljerade förklaringar till varje svar</li>
+                <li>📚 Referenser i Harvard-stil</li>
+                <li>⏱️ Ta dig tid att tänka efter!</li>
+            </ul>
+
+            <p style="margin-top: 2rem;"><strong>Lycka till!</strong></p>
+            <button class="btn btn-primary" onclick="startQuiz()" style="margin-top: 1rem;">Starta quiz</button>
+        </div>
+
+        <!-- QUIZ CONTENT -->
+        <div id="quizContent" class="quiz-content" style="display: none;">
+            <div class="progress">
+                Fråga <span id="currentQuestion">1</span> av <span id="totalQuestions">10</span>
+            </div>
+
+            <!-- Questions will be inserted here by JavaScript -->
+            <div id="questionsContainer"></div>
+
+            <div class="navigation">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" style="display: none;">← Föregående</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Nästa →</button>
+            </div>
+        </div>
+
+        <!-- RESULT SCREEN -->
+        <div id="resultScreen" class="result-container">
+            <h2>🎉 Quiz avslutat!</h2>
+            <div class="result-score" id="finalScore">0/10</div>
+            <div class="score-bar">
+                <div class="score-fill" id="scoreFill" style="width: 0%;">
+                    <span id="scorePercent">0%</span>
+                </div>
+            </div>
+            <p class="result-message" id="resultMessage"></p>
+            <button class="btn btn-primary" onclick="restartQuiz()">Gör om quizet</button>
+            <button class="btn btn-secondary" onclick="reviewAnswers()" style="margin-left: 1rem;">Granska svar</button>
+        </div>
+    </div>
+
+    <script>
+        // UPPDATERING 2026-01-12: Quiz om Kävlinge kommun - Sektor Arbetsliv och fritid
+        const quizData = [
+            {
+                question: "Hur många medarbetare arbetar inom Sektor Arbetsliv och fritid i Kävlinge kommun?",
+                options: [
+                    "Cirka 100 medarbetare",
+                    "Cirka 150 medarbetare",
+                    "Cirka 200 medarbetare",
+                    "Cirka 75 medarbetare"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Rätt! Sektor Arbetsliv och fritid består av cirka 150 engagerade medarbetare. Detta är en betydande personalstyrka som täcker in många olika verksamhetsområden – från bibliotek och kulturskola till socialtjänst och vuxenutbildning.",
+                    incorrect: "Fel svar. Enligt Kävlinge kommuns jobbportal består Sektor Arbetsliv och fritid av cirka 150 engagerade medarbetare. Detta kan verka som en oväntat stor siffra för den som är ny på kommunen, men sektorn täcker in många olika verksamhetsområden som kräver bred kompetens.",
+                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                }
+            },
+            {
+                question: "Vilken av följande verksamheter ingår INTE i Sektor Arbetsliv och fritid?",
+                options: [
+                    "Kulturskolan",
+                    "Gymnasie- och vuxenutbildning",
+                    "Räddningstjänsten",
+                    "Familjebehandling/stödboende"
+                ],
+                correct: 2,
+                explanation: {
+                    correct: "Korrekt! Räddningstjänsten ingår inte i Sektor Arbetsliv och fritid. Räddningstjänsten är vanligtvis en separat verksamhet i kommunen eller ingår i en räddningstjänstförbund. Sektor Arbetsliv och fritid fokuserar på verksamheter som bibliotek, kulturskola, fritidsgårdar, vuxenutbildning och vissa delar av socialtjänsten.",
+                    incorrect: "Fel. Räddningstjänsten ingår inte i Sektor Arbetsliv och fritid. Sektorn omfattar istället verksamheter som arbete och integration, bibliotek, familjebehandling/stödboende, fritidsgårdar/anläggningar, gymnasie- och vuxenutbildning, kulturskolan, mottagning/barnutredare och vuxenenhet. Detta är en kluring fråga eftersom räddningstjänst kan verka som en fritidsverksamhet, men den är en helt separat funktion i kommunen.",
+                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                }
+            },
+            {
+                question: "Vilka tre lagar är särskilt viktiga för Sektor Arbetsliv och fritids arbete?",
+                options: [
+                    "Kommunallagen, Plan- och bygglagen, Miljöbalken",
+                    "Bibliotekslagen, Skollagen, Socialtjänstlagen",
+                    "Arbetsmiljölagen, LAS, Diskrimineringslagen",
+                    "Förvaltningslagen, Offentlighets- och sekretesslagen, Arkivlagen"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Helt rätt! Sektorns arbete utgår från krav och mål i bibliotekslagen, skollagen och socialtjänstlagen. Detta speglar verksamheternas olika karaktärer: bibliotekslagen styr biblioteksverksamheten, skollagen reglerar gymnasie- och vuxenutbildning, och socialtjänstlagen är ramverket för familjebehandling och barn- och ungdomsarbete. Som controller behöver man förstå hur dessa lagar påverkar verksamheternas ekonomi och måluppfyllelse.",
+                    incorrect: "Fel. De tre centrala lagarna är bibliotekslagen, skollagen och socialtjänstlagen. Även om de andra lagarna du valde också är viktiga i kommunal verksamhet, är det just dessa tre som är grunden för Sektor Arbetsliv och fritids uppdrag. Detta är viktigt att veta som controller eftersom lagkraven påverkar både budget, resursbehov och hur verksamheten kan styras ekonomiskt.",
+                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                }
+            },
+            {
+                question: "Vad är ett av sektorns huvudsyften enligt bibliotekslagen?",
+                options: [
+                    "Att öka kommunens skatteintäkter genom fler invånare",
+                    "Att verka för det demokratiska samhällets utveckling genom kunskapsförmedling och fri åsiktsbildning",
+                    "Att digitalisera alla kommunala tjänster",
+                    "Att främja turism och besöksnäring i kommunen"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Utmärkt! Enligt bibliotekslagen ska biblioteksverksamheten verka för det demokratiska samhällets utveckling genom att bidra till kunskapsförmedling och fri åsiktsbildning. Detta är en grundläggande demokratisk funktion som går längre än bara att låna ut böcker – det handlar om tillgång till information, bildning och en mötesplats för alla medborgare oavsett bakgrund.",
+                    incorrect: "Inte rätt. Bibliotekslagen föreskriver att biblioteksverksamheten ska verka för det demokratiska samhällets utveckling genom att bidra till kunskapsförmedling och fri åsiktsbildning. Detta är en kärnuppgift som går djupare än praktiska funktioner – det är en demokratisk rättighet. Som controller i sektorn är det viktigt att förstå detta uppdrag eftersom det påverkar hur resurser ska fördelas och vilka verksamheter som prioriteras.",
+                    reference: "Bibliotekslag (2013:801). Stockholm: Kulturdepartementet. Tillgänglig: https://www.riksdagen.se/sv/dokument-lagar/dokument/svensk-forfattningssamling/bibliotekslag-2013801_sfs-2013-801 [Hämtad 12 januari 2026]."
+                }
+            },
+            {
+                question: "Vilken kompetens är MEST central för en controller i Sektor Arbetsliv och fritid, utöver traditionella ekonomiska färdigheter?",
+                options: [
+                    "Fördjupad kunskap om juridik och rättsprocesser",
+                    "Förståelse för verksamheternas olika karaktärer och lagstiftning inom utbildning, kultur och socialtjänst",
+                    "Avancerad IT-utveckling och programmering",
+                    "Marknadsföring och PR-kompetens"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Helt rätt! Som controller i en så bred sektor behöver man verkligen förstå verksamheternas olika karaktärer och den lagstiftning som styr dem. Det räcker inte med ekonomisk kompetens – man måste förstå skillnaderna mellan skollagen, socialtjänstlagen och bibliotekslagen, samt hur dessa påverkar ekonomistyrning, budgetprocesser och uppföljning. Detta är verksamhetsnära ekonomistyrning i praktiken.",
+                    incorrect: "Fel. Det mest centrala är förståelse för verksamheternas olika karaktärer och lagstiftning. Sektorn omfattar allt från utbildning och kultur till socialtjänst – varje område har sina egna lagar, krav och ekonomiska förutsättningar. En controller behöver förstå dessa skillnader för att kunna ge rätt ekonomiskt stöd. Hypergene och andra system är verktyg, men utan verksamhetsförståelse blir de mindre effektiva.",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. Intern handledning. Kävlinge: Kävlinge kommun."
+                }
+            },
+            {
+                question: "Vad är sektorns särskilda fokusområde när det gäller kävlingebor med arbetsförmåga?",
+                options: [
+                    "Att de ska få tillgång till fritidsaktiviteter",
+                    "Att de ska bli självförsörjande",
+                    "Att de ska delta i kulturskolan",
+                    "Att de ska använda biblioteket regelbundet"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Korrekt! Verksamheterna ska särskilt fokusera på insatser för att kävlingebor med arbetsförmåga blir självförsörjande. Detta är en tydlig målsättning som speglar kommunens ansvar för arbetsmarknadsinsatser och integration. Det handlar om att skapa förutsättningar för människor att komma i arbete och kunna försörja sig själva, vilket är både en ekonomisk och en social fråga.",
+                    incorrect: "Fel. Det korrekta svaret är att kävlingebor med arbetsförmåga ska bli självförsörjande. Detta är ett centralt mål för sektorns arbetsmarknads- och integrationsinsatser. Som controller är detta viktigt att förstå eftersom investeringar i dessa verksamheter inte bara är kostnader – de är insatser som potentiellt minskar kommunens framtida sociala utgifter och ökar skatteintäkterna när fler kommer i arbete.",
+                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                }
+            },
+            {
+                question: "Vilket ekonomisystem används som främsta stödsystem för controllern i Kävlinge kommun?",
+                options: [
+                    "SAP",
+                    "Hypergene",
+                    "Raindance",
+                    "Excel och Access"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Riktigt! Hypergene är controllerns främsta stödsystem i Kävlinge kommun. Hypergene är ett modernt BI- och planeringsverktyg som möjliggör avancerad ekonomisk planering, budgetering, prognoser och uppföljning. Som controller förväntas du inte bara kunna använda systemet utan också kunna utveckla det – skapa nya rapporter, dashboards och analyser som stödjer verksamheternas beslutsfattande.",
+                    incorrect: "Fel. Hypergene är det primära stödsystemet. Detta är ett viktigt system att behärska eftersom det går längre än traditionell ekonomiredovisning – det är ett verktyg för strategisk ekonomistyrning. Raindance kan vara det underliggande ekonomisystemet, men Hypergene är verktyget för analys, planering och uppföljning. En erfaren Hypergene-användare som också kan utveckla systemet är mycket värdefull för kommunen.",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. Intern handledning. Kävlinge: Kävlinge kommun."
+                }
+            },
+            {
+                question: "Vad kännetecknar arbetsplatskulturen i Kävlinge kommun enligt medarbetarintervjuer?",
+                options: [
+                    "Hög personalomsättning och stress",
+                    "Konkret arbete med värdegrunden och idérikedom med olika projekt",
+                    "Strikt hierarkisk struktur",
+                    "Fokus enbart på regelefterlevnad"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Precis! Medarbetare beskriver Kävlinge som en kommun där man 'arbetar med värdegrunden' – inte bara som ledord utan som konkret handling. Kommunen beskrivs också som idérik med olika projekt, nästan som en 'entreprenörskommun'. Detta är en viktig kulturaspekt för den som söker sig till kommunen – det handlar om utveckling, inte bara förvaltning.",
+                    incorrect: "Fel. Kävlinge kommun beskrivs av medarbetare som en plats där man konkret arbetar med värdegrunden och är idérik med olika projekt. En medarbetare sa 'Wow! här arbetar man med värdegrunden' och beskrev kommunen som en form av 'entreprenörskommun'. Detta är en kultur som passar den som vill utveckla och förbättra, inte bara administrera. Som controller betyder detta att du förväntas vara med och driva utveckling, inte bara rapportera siffror.",
+                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                }
+            },
+            {
+                question: "Vad är en viktig utmaning som identifierats för Kävlinge kommun enligt medarbetare?",
+                options: [
+                    "Brist på budget och resurser",
+                    "Samverkan mellan olika sektorer som arbetar med samma familjer",
+                    "För få medborgare",
+                    "Dålig IT-infrastruktur"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Korrekt! En medarbetare identifierade samverkan som en utmaning: 'Det spretar lite i Kävlinge kommun. Det är olika sektorer och ibland jobbar flera av dem med samma familj fast med olika glasögon.' Detta är en viktig insikt – kommunen har bra verksamheter men behöver förbättra hur olika delar samarbetar. Som controller kan du bidra till bättre samverkan genom gemensamma ekonomiska uppföljningssystem och processer.",
+                    incorrect: "Fel. Den identifierade utmaningen är samverkan mellan olika sektorer. Som en medarbetare uttryckte det: olika sektorer arbetar ibland med samma familj men med olika perspektiv, vilket gör att kommunen kan upplevas som 'spretig' för medborgaren. Detta är en viktig utmaning för en controller att förstå – ekonomistyrning handlar inte bara om siffror utan om att skapa system som underlättar samverkan och helhetssyn.",
+                    reference: "Kävlinge kommun (2026) Arbetsliv och fritid. Tillgänglig: https://jobb.kavlinge.se/department/arbetslivochfritid/ [Hämtad 12 januari 2026]."
+                }
+            },
+            {
+                question: "Vad är controllerns roll i Sektor Arbetsliv och fritids ledningsgrupp?",
+                options: [
+                    "Endast att rapportera ekonomiska utfall",
+                    "Att vara en strategisk partner som kombinerar ekonomisk expertis med verksamhetsförståelse och systemutveckling",
+                    "Att granska och kontrollera verksamhetschefernas beslut",
+                    "Att hantera löneadministration"
+                ],
+                correct: 1,
+                explanation: {
+                    correct: "Utmärkt! Controllern förväntas vara en strategisk partner i ledningsgruppen – inte bara en 'sifferperson'. Detta innebär att kombinera ekonomisk expertis med djup verksamhetsförståelse, utveckla stödsystem som Hypergene, och bidra till strategiska diskussioner. Det är en aktiv roll där du förväntas utmana, analysera och föreslå förbättringar baserat på både ekonomiska och verksamhetsmässiga grunder.",
+                    incorrect: "Fel. Controllern ska vara en strategisk partner i ledningsgruppen. Detta är mycket mer än att bara rapportera siffror – det handlar om att vara verksamhetsnära, förstå utmaningarna i olika delar av sektorn (från kulturskola till socialtjänst), och kunna översätta mellan ekonomi och verksamhet. Det kräver både analytisk skärpa och pedagogisk förmåga. En modern controller är en katalysator för verksamhetsutveckling, inte bara en granskare.",
+                    reference: "Kävlinge kommun (2025) PM Controller – Sektor Arbetsliv och fritid. Intern handledning. Kävlinge: Kävlinge kommun."
+                }
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        function startQuiz() {
+            document.getElementById('introScreen').style.display = 'none';
+            document.getElementById('quizContent').style.display = 'block';
+            document.getElementById('totalQuestions').textContent = quizData.length;
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            const questionData = quizData[currentQuestionIndex];
+            
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question-container active';
+            
+            questionDiv.innerHTML = `
+                <div class="question-number">Fråga ${currentQuestionIndex + 1} av ${quizData.length}</div>
+                <div class="question-text">${questionData.question}</div>
+                <div class="options">
+                    ${questionData.options.map((option, index) => `
+                        <div class="option" onclick="selectAnswer(${index})">
+                            <span class="option-letter">${String.fromCharCode(65 + index)}</span>
+                            <span>${option}</span>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="explanation" id="explanation"></div>
+            `;
+            
+            container.appendChild(questionDiv);
+            
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            updateNavigationButtons();
+        }
+
+        function selectAnswer(answerIndex) {
+            if (userAnswers[currentQuestionIndex] !== undefined) return;
+            
+            userAnswers[currentQuestionIndex] = answerIndex;
+            const questionData = quizData[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach((option, index) => {
+                option.classList.add('disabled');
+                if (index === questionData.correct) {
+                    option.classList.add('correct');
+                }
+                if (index === answerIndex && index !== questionData.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            if (answerIndex === questionData.correct) {
+                score++;
+            }
+
+            showExplanation(answerIndex === questionData.correct);
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function showExplanation(isCorrect) {
+            const questionData = quizData[currentQuestionIndex];
+            const explanationDiv = document.getElementById('explanation');
+            
+            explanationDiv.innerHTML = `
+                <h4>${isCorrect ? '✅ Korrekt svar!' : '❌ Fel svar'}</h4>
+                <p><strong>Förklaring:</strong></p>
+                <p>${isCorrect ? questionData.explanation.correct : questionData.explanation.incorrect}</p>
+                <div class="reference">
+                    <strong>Källa:</strong> ${questionData.explanation.reference}
+                </div>
+            `;
+            explanationDiv.classList.add('show');
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+                document.getElementById('nextBtn').disabled = true;
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+                
+                if (userAnswers[currentQuestionIndex] !== undefined) {
+                    const answerIndex = userAnswers[currentQuestionIndex];
+                    const options = document.querySelectorAll('.option');
+                    const questionData = quizData[currentQuestionIndex];
+                    
+                    options.forEach((option, index) => {
+                        option.classList.add('disabled');
+                        if (index === questionData.correct) {
+                            option.classList.add('correct');
+                        }
+                        if (index === answerIndex && index !== questionData.correct) {
+                            option.classList.add('incorrect');
+                        }
+                    });
+                    
+                    showExplanation(answerIndex === questionData.correct);
+                    document.getElementById('nextBtn').disabled = false;
+                }
+            }
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.style.display = currentQuestionIndex === 0 ? 'none' : 'block';
+            nextBtn.textContent = currentQuestionIndex === quizData.length - 1 ? 'Se resultat' : 'Nästa →';
+        }
+
+        function showResults() {
+            document.getElementById('quizContent').style.display = 'none';
+            document.getElementById('resultScreen').classList.add('show');
+            
+            const percentage = Math.round((score / quizData.length) * 100);
+            document.getElementById('finalScore').textContent = `${score}/${quizData.length}`;
+            document.getElementById('scorePercent').textContent = `${percentage}%`;
+            
+            setTimeout(() => {
+                document.getElementById('scoreFill').style.width = `${percentage}%`;
+            }, 100);
+            
+            let message = '';
+            if (percentage === 100) {
+                message = '🏆 Perfekt! Du har utmärkt kunskap om Kävlinge kommun och Sektor Arbetsliv och fritid!';
+            } else if (percentage >= 80) {
+                message = '🌟 Mycket bra! Du har god förståelse för sektorn och controller-rollen.';
+            } else if (percentage >= 60) {
+                message = '👍 Bra jobbat! Du har grundläggande kunskap, men det finns mer att lära.';
+            } else if (percentage >= 40) {
+                message = '📚 Du har viss kunskap, men rekommenderas att läsa mer om sektorn.';
+            } else {
+                message = '💪 Fortsätt lära! Granska svaren och fördjupa dig i materialet.';
+            }
+            
+            document.getElementById('resultMessage').textContent = message;
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+            
+            document.getElementById('resultScreen').classList.remove('show');
+            document.getElementById('introScreen').style.display = 'block';
+            document.getElementById('scoreFill').style.width = '0%';
+        }
+
+        function reviewAnswers() {
+            currentQuestionIndex = 0;
+            document.getElementById('resultScreen').classList.remove('show');
+            document.getElementById('quizContent').style.display = 'block';
+            renderQuestion();
+            
+            if (userAnswers[0] !== undefined) {
+                const answerIndex = userAnswers[0];
+                const options = document.querySelectorAll('.option');
+                const questionData = quizData[0];
+                
+                options.forEach((option, index) => {
+                    option.classList.add('disabled');
+                    if (index === questionData.correct) {
+                        option.classList.add('correct');
+                    }
+                    if (index === answerIndex && index !== questionData.correct) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                
+                showExplanation(answerIndex === questionData.correct);
+                document.getElementById('nextBtn').disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
