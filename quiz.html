@@ -29,7 +29,7 @@
             position: relative;
         }
 
-        /* TILLBAKA-KNAPP */
+        /* TILLBAKA-KNAPPAR */
         .back-to-presentation {
             position: fixed;
             top: 1rem;
@@ -52,6 +52,33 @@
         }
 
         .back-to-presentation:hover {
+            background: #1a5a3a;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .to-fredagsquiz {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1a5a3a;
+            border: 2px solid #1a5a3a;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .to-fredagsquiz:hover {
             background: #1a5a3a;
             color: white;
             transform: scale(1.05);
@@ -337,6 +364,13 @@
                 font-size: 0.8rem;
             }
 
+            .to-fredagsquiz {
+                top: 0.5rem;
+                left: 0.5rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+
             header h1 {
                 font-size: 1.5rem;
             }
@@ -352,6 +386,11 @@
     </style>
 </head>
 <body>
+    <!-- FREDAGSQUIZ-KNAPP -->
+    <a href="https://kentlundgren.github.io/quiz/0/" class="to-fredagsquiz" title="Se alla fredagsquiz från Simrishamn" target="_blank">
+        Fredagsquiz →
+    </a>
+
     <!-- TILLBAKA-KNAPP -->
     <a href="index.html" class="back-to-presentation" title="Tillbaka till presentationen">
         ← Presentation
